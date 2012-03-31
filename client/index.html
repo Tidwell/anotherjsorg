@@ -1,0 +1,47 @@
+<!doctype html>
+<head>
+  <meta charset="utf-8">
+  <title>BI CMS Lib V2</title>
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>Edit Event</h1>
+    <p><label>Event Name</lable><input type="text" data-bind="value: title" /></p>
+    <p><label>Url</lable>businessinsider.com/event/<input type="text" data-bind="value: url" /></p>
+    <p><label>Event Tagline</lable><input type="text" data-bind="value: tagline" /></p>
+
+  <h2>Setup and Landing Page</h2>
+
+  <h2>Agenda</h2>
+
+  <h2>Speakers</h2>
+  <div data-bind="foreach: speakers">
+    <div class="speaker">
+      <p><label>Header:</label><input type="text" data-bind="value: header" /></p>
+      <p><label>Name:</label><input type="text" data-bind="value: name" /></p>
+      <p><label>Title:</label><input type="text" data-bind="value: title" /></p>
+      <p><label>Comapny:</label><input type="text" data-bind="value: company" /></p>
+      <hr />
+    </div>
+  </div>
+  <button data-bind="click: addSpeaker">+Add Speaker</button>
+
+  <button data-bind="click: save">Save</button>
+
+
+
+  <!-- JavaScript at the bottom for fast page loading -->
+  <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.7.1.min.js"><\/script>')</script>
+
+  <!-- scripts -->
+  <script type='text/javascript' src='js/vendor/knockout.js'></script>
+  <script type='text/javascript' src='js/lib/base.js'></script>
+  <script type='text/javascript' src='js/lib/utilities/data.js'></script>
+  <script type='text/javascript' src='js/lib/utilities/querystring.js'></script>
+  <script type='text/javascript' src='js/lib/controllers/events.js'></script>
+  <!-- end scripts -->
+ </body>
+</html>
