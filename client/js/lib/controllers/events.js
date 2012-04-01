@@ -1,50 +1,41 @@
-//
+//Controller for the Events data type
+//define operations the UI can impliment
+//get the event data and generate a knockout view model
+//initialize knockout
 (function($,ko,BI,undefined) {
-	// Class to represent a speaker
-	function Speaker(opt) {
-	    var self = this;
-	    self.header = opt.header || ''
-	    self.name = opt.name || '';
-	    self.title = opt.title || '';
-	    self.company = opt.company || '';
-	}
+	var dataModel;
 
-	// Viewmodel and init
-	function EventsViewModel() {
-	    var self = this;
-	    self.title = 'default title';
-	    self.url = '';
-	    self.tagline = '';
-	    self.speakers = ko.observableArray([]);
+	// Operations we can perform on the data set from the UI
+    var operations = {
+    	addSpeaker: function() {
+    		//create a copy of the speaker template and add a new one to our data
+    	    this.speakers.push($.extend({},dataModel.speakers[0]));
+    	},
+		save: function() {
+        	BI.data.save('event', this);
+        }
+    };
 
-	    //load data
-	    BI.data.get('event', BI.utilities.qs.get('id'), function(data) {
+    //grab the event id from the querystring
+    BI.data.get({
+		type: 'event',
+		id: BI.utilities.qs.get('id'), 
+		callback: function(data,blankObj) {
+			//store the data so we can use it later if we need it
+			dataModel = blankObj;
+			
+			//construct a view model with the data that was returned
+			var viewModel = BI.ko.constructViewModel({
+				data: data,
+				dataTemplate: blankObj
+			});
 
-	    	
-
-	    	
-			//initialize each speaker
-			var mappedSpeakers = $.map(data.speakers, function(speaker) { return new Speaker(speaker) });
-        	self.speakers(mappedSpeakers);
-
-        	//extend with the rest of the data properties
-        	for (property in data) {
-        		if (data.hasOwnProperty(property) && !self[property]) {
-        			self[property] = data[property];
-        		}
-        	}
-	    });
-
-
-	    // Operations
-	    self.addSpeaker = function() {
-	        self.speakers.push(new Speaker({}));
-	    }
-
-	    self.save = function() {
-	        BI.data.save('event', self);
-	    }; 
-	}
-	
-	ko.applyBindings(new EventsViewModel());
+			//add operations we defined to the viewModel
+			$.extend(viewModel,operations);
+			
+			//init knockout
+			ko.applyBindings(viewModel);
+		}
+	});
+ 
 }(jQuery, ko, BI))
