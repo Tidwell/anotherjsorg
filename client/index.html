@@ -4,40 +4,44 @@
   <title>BI CMS Lib V2</title>
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="css/reset.css">
+
   <link rel="stylesheet" href="css/vendor/colorpicker.css" type="text/css" />
-  <link rel="stylesheet" href="css/colorpicker.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/style.css">
+  
 </head>
 <body>
-  <h1>Edit Event</h1>
+  <div id="container">
+    <h1>Edit Event</h1>
 
-  <h2>Setup and Landing Page</h2>
-    <p><label>Event Name</lable><input type="text" data-bind="value: title" /></p>
-    <p><label>Url</lable>businessinsider.com/event/<input type="text" data-bind="value: url" /></p>
-    <p><label>Event Tagline</lable><input type="text" data-bind="value: tagline" /></p>
-    <p><label>Tagline Color</lable><input type="text" data-bind="colorpicker: taglineColor,value: taglineColor" /></p>
-  
-
-
-  <h2>Agenda</h2>
+    <h2>Setup and Landing Page</h2>
+      <p><label>Event Name</label><input type="text" data-bind="value: title" /></p>
+      <p><label>Url</label><span>businessinsider.com/event/<input type="text" data-bind="value: url" /></span></p>
+      <p><label>Event Tagline</label><input type="text" data-bind="value: tagline" /></p>
+      <p><label>Tagline Color</label><input type="text" data-bind="colorpicker: taglineColor,value: taglineColor" /></p>
+    
 
 
-  <h2>Speakers</h2>
-    <div data-bind="foreach: speakers">
-      <div class="speaker">
-        <p><label>Header:</label><input type="text" data-bind="value: header" /></p>
-        <p><label>Name:</label><input type="text" data-bind="value: name" /></p>
-        <p><label>Title:</label><input type="text" data-bind="value: title" /></p>
-        <p><label>Comapny:</label><input type="text" data-bind="value: company" /></p>
-        <hr />
+    <h2>Agenda</h2>
+
+
+    <h2>Speakers</h2>
+      <div data-bind="foreach: speakers">
+        <div class="speaker">
+          <p><label>Header:</label><input type="text" data-bind="value: header" /></p>
+          <p><label>Name:</label><input type="text" data-bind="value: name" /></p>
+          <p><label>Title:</label><input type="text" data-bind="value: title" /></p>
+          <p><label>Comapny:</label><input type="text" data-bind="value: company" /></p>
+          <hr />
+        </div>
       </div>
-    </div>
-    <button data-bind="click: addSpeaker">+Add Speaker</button>
+      <button data-bind="click: addSpeaker">+Add Speaker</button>
 
 
-  <h2>Sponsor Right Rail</h2>
+    <h2>Sponsor Right Rail</h2>
 
-  <button data-bind="click: save">Save</button>
-
+    <button data-bind="click: save">Save</button>
+  </div>
 
 
 
