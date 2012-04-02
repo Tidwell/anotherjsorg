@@ -52,7 +52,7 @@
 			ko.applyBindings(viewModel);
 
 			//initialize the jquery validate plugin to validate the form
-			$("#eventForm").validate({
+			$("form").validate({
 				//wrap in an anonymous function so that save has the proper 'this'
 				//context as jquery validate will override 'this'
 				submitHandler: function() {
