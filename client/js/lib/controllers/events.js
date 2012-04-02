@@ -34,7 +34,7 @@
     //We use Bi.utilities.qs to grab the event id from the querystring
     BI.data.get({
 		type: 'event',
-		id: BI.utilities.qs.get('id'), 
+		id: BI.location.qs.get('id'), 
 		callback: function(data,blankObj) {
 			//store the blank data model so we can use it later in the operations.
 			dataModel = blankObj;

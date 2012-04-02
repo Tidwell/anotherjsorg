@@ -1,8 +1,10 @@
-//
+// Helper to get querystring params
+// If more flexable URI manipulation required, replace with: 
+// https://github.com/medialize/URI.js
 (function($,ko,BI,undefined) {
 	var exposed;
 
-	BI.namespace('utilities.qs')
+	BI.namespace('location')
 
 	function getParameterByName(name) {
 	  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
@@ -19,5 +21,5 @@
 		get: getParameterByName
 	}
 
-	BI.utilities.qs = exposed;
+	BI.location.qs = exposed;
 }(jQuery, ko, BI))
