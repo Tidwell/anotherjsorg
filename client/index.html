@@ -4,13 +4,13 @@
   <title>BI CMS Lib V2</title>
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="css/reset.css">
-
   <link rel="stylesheet" href="css/vendor/colorpicker.css" type="text/css" />
 
   <link rel="stylesheet" href="css/style.css">
   
 </head>
 <body>
+  <form id="eventForm" method="post" action="">
   <div id="container">
     <h1>Edit Event</h1>
 
@@ -32,6 +32,7 @@
           <p><label>Name:</label><input type="text" data-bind="value: name" /></p>
           <p><label>Title:</label><input type="text" data-bind="value: title" /></p>
           <p><label>Comapny:</label><input type="text" data-bind="value: company" /></p>
+          <p><label>Email:</label><input type="text" data-bind="value: email, uniqueName: true" class="email"/></p>
           <hr />
         </div>
       </div>
@@ -52,23 +53,27 @@
       </div>
       <button data-bind="click: addSection">+Add Another Section</button>
 
-    <button data-bind="click: save">Save</button>
+      <button type="submit">Save</button>
   </div>
+  </form>
 
 
 
 
   <!-- JavaScript at the bottom for fast page loading -->
+
+  <!-- jQuery & plugins -->
   <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.7.1.min.js"><\/script>')</script>
+  <script type='text/javascript' src='js/vendor/jquery.validate.js'></script>
+  <script type='text/javascript' src='js/vendor/colorpicker.js'></script>
+
+  <!-- Knockout & plugins -->
   <script type='text/javascript' src='js/vendor/knockout.js'></script>
   <script type='text/javascript' src='js/vendor/knockout.mapper.js'></script>
 
-  <!-- jQuery plugins -->
-  <script type='text/javascript' src='js/vendor/colorpicker.js'></script>
-
-  <!-- scripts -->
+  <!-- Custom BI lib -->
   <script type='text/javascript' src='js/lib/base.js'></script>
   <script type='text/javascript' src='js/lib/utilities/ko.js'></script>
   <script type='text/javascript' src='js/lib/utilities/data.js'></script>

@@ -7,14 +7,14 @@
 	    init: function(element,valueAccessor) {
 	    	var observable = valueAccessor();
 	    	//init the colorpicker jquery plugin
-	    	//when colorpicker submit button used hide picker, and update viewmodel
 	    	$(element).ColorPicker({
+	    		//when colorpicker submit:  hide picker, and update viewmodel
 				onSubmit: function(hsb, hex, rgb, el) {
 					$(el).ColorPickerHide();
 					observable(hex);
 				}
 			})
-			//want the colorpicker to update when typing in the form field
+			//make colorpicker update when typing in the form field
 			.bind('keyup', function(){
 				$(this).ColorPickerSetColor(this.value);
 			});

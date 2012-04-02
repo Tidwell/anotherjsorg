@@ -1,7 +1,7 @@
 /*
 	Controller for the Events data type
 	
-	Dependancy: jquery, knockout, base, data, ko, querystring, 
+	Dependancy: jquery, jquery.validate, knockout, base, data, ko, querystring, 
 */
 (function($,ko,BI,undefined) {
 	var dataModel;
@@ -12,17 +12,17 @@
     var operations = {
     	addSpeaker: function() {
     		//make a copy from the data model
-    		var copy = $.extend({},dataModel.speakers[0]);
+    		var copy = $.extend(true,{},dataModel.speakers[0]);
     		//add knockout datatypes and append to speakers
     	    this.speakers.push(BI.ko.wrap(copy));
     	},
         addSection: function() {
         	//one line, doing same as above
-        	this.rightRail.push(BI.ko.wrap($.extend({},dataModel.rightRail[0])));
+        	this.rightRail.push(BI.ko.wrap($.extend(true,{},dataModel.rightRail[0])));
         },
         addLogo: function(sectionData) {
         	//one line, doing same as above
-        	this.logos.push(BI.ko.wrap($.extend({},dataModel.rightRail[0].logos[0])))
+        	this.logos.push(BI.ko.wrap($.extend(true,{},dataModel.rightRail[0].logos[0])))
         },
         save: function() {
 			//we delegate to the data module, passing the entire viewModel
@@ -47,9 +47,18 @@
 
 			//extend the viewModel with the operations we defined earlier
 			$.extend(true,viewModel,operations);
-			
+
 			//initialize the knockout DOM bindings
 			ko.applyBindings(viewModel);
+
+			//initialize the jquery validate plugin to validate the form
+			$("#eventForm").validate({
+				//wrap in an anonymous function so that save has the proper 'this'
+				//context as jquery validate will override 'this'
+				submitHandler: function() {
+					viewModel.save()
+				} 
+			});
 		}
 	});
  
