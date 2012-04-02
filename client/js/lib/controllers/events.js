@@ -31,7 +31,7 @@
     };
 
     //Use BI.data to get the data for the page, and the blank template for the events
-    //We use Bi.utilities.qs to grab the event id from the querystring
+    //We use Bi.location to grab the event id from the querystring
     BI.data.get({
 		type: 'event',
 		id: BI.location.qs.get('id'), 

@@ -3,7 +3,8 @@
 
 	//add a new data-bind attribute to knockout for the plugin (allows data-bind="colorpicker: dataVal")
 	ko.bindingHandlers.colorpicker = {
-		//init is passed the element and a function for set/get the corresponding value in the view model
+		//init is passed the element and a function that returns a set/get function
+		//for the corresponding value in the view model
 	    init: function(element,valueAccessor) {
 	    	var observable = valueAccessor();
 	    	//init the colorpicker jquery plugin
