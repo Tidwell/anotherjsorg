@@ -39,6 +39,18 @@
 
 
     <h2>Sponsor Right Rail</h2>
+      <div data-bind="foreach: rightRail">
+        <div class="sponsor">
+          <p><label>Header:</label><input type="text" data-bind="value: header" /></p>
+          <div data-bind="foreach: logos">
+            <p><label>Image:</label><input type="text" data-bind="value: img" /></p>
+            <p><label>Url:</label><input type="text" data-bind="value: url" /></p>
+          </div>
+          <button data-bind="click: $parent.addLogo">+Add Another Logo</button>
+          <hr />
+        </div>
+      </div>
+      <button data-bind="click: addSection">+Add Another Section</button>
 
     <button data-bind="click: save">Save</button>
   </div>
@@ -51,6 +63,7 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.7.1.min.js"><\/script>')</script>
   <script type='text/javascript' src='js/vendor/knockout.js'></script>
+  <script type='text/javascript' src='js/vendor/knockout.mapper.js'></script>
 
   <!-- jQuery plugins -->
   <script type='text/javascript' src='js/vendor/colorpicker.js'></script>

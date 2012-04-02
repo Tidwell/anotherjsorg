@@ -1,5 +1,8 @@
-//Custom helper functions for easy creation of view models using
-//Data sets
+/*
+Custom helper functions for doing basic tasks with data sets and knockout
+
+dependancies: jquery, knockout, knockout.mapping, base
+*/
 (function($,ko,BI,undefined) {
 	BI.namespace('ko')
 
@@ -14,38 +17,29 @@
 
 	*/
 	function constructViewModel(opt) {
-	  	var vm = {},
+	  	var vm,
 	  		data = opt.data,
-	  		blankObj = opt.dataTemplate
+	  		blankObj = opt.dataTemplate,
+	  		compositeObj;
 
-	  	//generate knockout data types and add properties to a view model based on
-	  	//the object passed
-	  	function extendObj(data) {			
-			for (prop in data) {
-				if (data.hasOwnProperty(prop) && !vm[prop]) {
-					//if we have an array
-					if (data[prop] instanceof Array) {
-		  				vm[prop] = ko.observableArray([])
-		  				//create an array of new instances using the blank template
-		  				var mappedProp = $.map(data[prop], function(item) { 
-		  					return $.extend($.extend({},blankObj[prop][0]),item);
-		  				});
-		  				//add the new array to the view model
-			  			vm[prop](mappedProp);
-		  			} else { //a string or number
-						vm[prop] = ko.observable(data[prop]);
-					}
-				}
-			}
-		}
+	  	//create a copy and merge the data into the blank object (just in case its missing something)
+	  	compositeObj = $.extend(true,$.extend(true,{},blankObj),data);
+	  	//apply custom knockout bindings
+	  	vm = wrap(compositeObj);
 
-		extendObj(data);
-		extendObj(blankObj);
 		return vm;
+	}
+
+	/*
+	A wrapper for ko.mapping.fromJS
+	*/
+	function wrap(data) {
+		return ko.mapping.fromJS(data);		
 	}
 
 	//expose methods to the BI namespace
 	BI.ko = {
-		constructViewModel: constructViewModel
+		constructViewModel: constructViewModel,
+		wrap: wrap
 	};
 }(jQuery, ko, BI))

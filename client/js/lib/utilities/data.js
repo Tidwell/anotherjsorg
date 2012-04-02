@@ -14,9 +14,16 @@
 	  }
 	}
 
+
 	function save(type,data) {
-		//make ajax call (todo) - just console.log the result
+		//make a copy of the data just in case
+		data = $.extend(true,{},data);
+		//remove the ko property
+		delete data.__ko_mapping__;
+		//convert to json
 		data = ko.toJSON(data);
+
+		//make ajax call (todo) - just console.log the result
 		data = eval('('+data+')');
 		console.log('saved '+type,data);
 	}
@@ -38,6 +45,9 @@ var blankEvent = {
 	id: undefined,
 	speakers: [
 		{ name: '', company: '', title: '', header: '' }
+	],
+	rightRail: [
+		{ header: '', logos: [{ img: '', url: '' }] }
 	]
 },
 dummyEvent = {
@@ -48,8 +58,8 @@ dummyEvent = {
 	type: 'event',
 	id: 123,
 	speakers: [
-		{ name: 'Bob', company: 'AT&T' },
-		{ name: 'John', title: 'CFO', company: 'AT&T' },
-		{ name: 'Bob', header: 'A Other Bob' }
+		{ name: 'Bob', title: '', company: 'AT&T', header: '' },
+		{ name: 'John', title: 'CFO', company: 'AT&T', header: '' },
+		{ name: 'Bob', title: '', company: '', header: 'A Other Bob' }
 	]
 }
