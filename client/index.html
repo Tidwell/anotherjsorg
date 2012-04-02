@@ -21,7 +21,6 @@
       <p><label>Tagline Color</label><input type="text" data-bind="colorpicker: taglineColor,value: taglineColor" /></p>
     
 
-
     <h2>Agenda</h2>
 
 
@@ -32,6 +31,7 @@
           <p><label>Name:</label><input type="text" data-bind="value: name" /></p>
           <p><label>Title:</label><input type="text" data-bind="value: title" /></p>
           <p><label>Comapny:</label><input type="text" data-bind="value: company" /></p>
+          <!--uniqueName is used becuase using the jquery Validate plugin demands a unique name per input el-->
           <p><label>Email:</label><input type="text" data-bind="value: email, uniqueName: true" class="email"/></p>
           <hr />
         </div>
@@ -47,11 +47,13 @@
             <p><label>Image:</label><input type="text" data-bind="value: img" /></p>
             <p><label>Url:</label><input type="text" data-bind="value: url" /></p>
           </div>
+          <!-- parent is used, because we are nested 2 levels deep inside the viewModel and the method is on the top level-->
           <button data-bind="click: $parent.addLogo">+Add Another Logo</button>
           <hr />
         </div>
       </div>
       <button data-bind="click: addSection">+Add Another Section</button>
+
 
       <button type="submit">Save</button>
   </div>
@@ -67,7 +69,7 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.7.1.min.js"><\/script>')</script>
   <script type='text/javascript' src='js/vendor/jquery.validate.js'></script>
-  <script type='text/javascript' src='js/vendor/colorpicker.js'></script>
+  <script type='text/javascript' src='js/vendor/jquery.colorpicker.js'></script>
 
   <!-- Knockout & plugins -->
   <script type='text/javascript' src='js/vendor/knockout.js'></script>

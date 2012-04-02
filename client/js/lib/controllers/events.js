@@ -1,7 +1,7 @@
 /*
 	Controller for the Events data type
 	
-	Dependancy: jquery, jquery.validate, knockout, base, data, ko, querystring, 
+	Dependancy: jquery, jquery.validate, jquery.colorpicker, knockout, base, data, ko, querystring, plugins/colorpicker
 */
 (function($,ko,BI,undefined) {
 	var dataModel;
