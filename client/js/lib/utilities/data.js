@@ -44,7 +44,7 @@ var blankEvent = {
 	type: 'event',
 	id: undefined,
 	speakers: [
-		{ name: '', company: '', title: '', header: '', email: '' }
+		{ name: '', company: '', title: '', header: '', email: '', address: ''}
 	],
 	rightRail: [
 		{ header: '', logos: [{ img: '', url: '' }] }
@@ -58,8 +58,8 @@ dummyEvent = {
 	type: 'event',
 	id: 123,
 	speakers: [
-		{ name: 'Bob', title: '', company: 'AT&T', header: '', email: '' },
-		{ name: 'John', title: 'CFO', company: 'AT&T', header: '', email: '' },
-		{ name: 'Bob', title: '', company: '', header: 'A Other Bob', email: '' }
+		{ name: 'Bob', title: '', company: 'AT&T', header: '', email: '',address: 123 },
+		{ name: 'John', title: 'CFO', company: 'AT&T', header: '', email: '',address: 123 },
+		{ name: 'Bob', title: '', company: '', header: 'A Other Bob', email: '',address: 123 }
 	]
 }

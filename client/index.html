@@ -25,12 +25,13 @@
 
 
     <h2>Speakers</h2>
-      <div data-bind="foreach: speakers">
+      <div data-bind="sortable: speakers">
         <div class="speaker">
           <p><label>Header:</label><input type="text" data-bind="value: header" /></p>
           <p><label>Name:</label><input type="text" data-bind="value: name" /></p>
           <p><label>Title:</label><input type="text" data-bind="value: title" /></p>
           <p><label>Comapny:</label><input type="text" data-bind="value: company" /></p>
+          <p><label>Address:</label><input type="text" data-bind="value: address" /></p>
           <!--uniqueName is used becuase using the jquery Validate plugin demands a unique name per input el-->
           <p><label>Email:</label><input type="text" data-bind="value: email, uniqueName: true" class="email"/></p>
           <hr />
@@ -68,12 +69,14 @@
   <!-- Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.7.1.min.js"><\/script>')</script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
   <script type='text/javascript' src='js/vendor/jquery.validate.js'></script>
   <script type='text/javascript' src='js/vendor/jquery.colorpicker.js'></script>
 
   <!-- Knockout & plugins -->
   <script type='text/javascript' src='js/vendor/knockout.js'></script>
   <script type='text/javascript' src='js/vendor/knockout.mapper.js'></script>
+  <script type='text/javascript' src='js/vendor/knockout.sortable.js'></script>
 
   <!-- Custom BI lib -->
   <script type='text/javascript' src='js/lib/base.js'></script>
