@@ -1,5 +1,5 @@
 //Allows us to use jquery color picker with knockout data bindings (an adapter)
-(function($,ko,BI,undefined) {
+(function($,ko,undefined) {
 
 	//add a new data-bind attribute to knockout for the plugin (allows data-bind="colorpicker: dataVal")
 	ko.bindingHandlers.colorpicker = {
@@ -27,4 +27,4 @@
 	        $(element).ColorPickerSetColor(currentValue);
 	    }
 	};
-}(jQuery, ko, BI))
+}(jQuery, ko))

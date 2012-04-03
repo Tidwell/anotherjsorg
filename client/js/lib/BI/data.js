@@ -5,9 +5,11 @@
 	  var   callback = opts.callback,
 	  		id = opts.id,
 	  		type = opts.type;
-
+	  if (type == 'author_list') {
+	  	callback(dummyAuthors);
+	  }
 	  //make ajax call (todo) - sending back dummy content for now
-	  if (id) {
+	  else if (id) {
 		  callback(dummyEvent,blankEvent)
 	  } else {
 	  	callback({},blankEvent)
@@ -48,9 +50,11 @@ var blankEvent = {
 	],
 	rightRail: [
 		{ header: '', logos: [{ img: '', url: '' }] }
-	]
+	],
+	author: ''
 },
 dummyEvent = {
+	author: 'Sally',
 	title: 'A short Title',
 	url: '',
 	tagline: '',
@@ -63,3 +67,9 @@ dummyEvent = {
 		{ name: 'Bob', title: '', company: '', header: 'A Other Bob', email: '',address: 123 }
 	]
 }
+dummyAuthors = [
+	'Bob',
+	'Sally',
+	'Toni',
+	'Josh'
+]
