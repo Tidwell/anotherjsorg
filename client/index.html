@@ -25,7 +25,7 @@
 
 
     <h2>Speakers</h2>
-      <div data-bind="sortable: speakers">
+      <div data-bind="sortable: {data: speakers,connectClass: 'speakers'}">
         <div class="speaker">
           <p><label>Header:</label><input type="text" data-bind="value: header" /></p>
           <p><label>Name:</label><input type="text" data-bind="value: name" /></p>
@@ -41,12 +41,14 @@
 
 
     <h2>Sponsor Right Rail</h2>
-      <div data-bind="foreach: rightRail">
+      <div data-bind="sortable: rightRail">
         <div class="sponsor">
           <p><label>Header:</label><input type="text" data-bind="value: header" /></p>
-          <div data-bind="foreach: logos">
-            <p><label>Image:</label><input type="text" data-bind="value: img" /></p>
-            <p><label>Url:</label><input type="text" data-bind="value: url" /></p>
+          <div data-bind="sortable: {data: logos,connectClass: 'imgs'}">
+            <div class="imgs">
+              <p><label>Image:</label><input type="text" data-bind="value: img" /></p>
+              <p><label>Url:</label><input type="text" data-bind="value: url" /></p>
+            </div>
           </div>
           <!-- parent is used, because we are nested 2 levels deep inside the viewModel and the method is on the top level-->
           <button data-bind="click: $parent.addLogo">+Add Another Logo</button>
