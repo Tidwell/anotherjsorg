@@ -4,7 +4,8 @@
 	Dependancy: jquery, jquery.validate, jquery.colorpicker, knockout, base, data, ko, querystring, plugins/colorpicker
 */
 (function($,ko,BI,undefined) {
-	var dataModel;
+	var dataModel, 
+        vm;
 
 	// Define operations the UI can impliment.  At runtime, 'this' will be our
 	// active knockout View Model (so we are directly modifying the data that is
@@ -20,9 +21,18 @@
         	//one line, doing same as above
         	this.rightRail.push(BI.ko.wrap($.extend(true,{},dataModel.rightRail[0])));
         },
+        deleteSection: function(currentlogo, ev) {
+            vm.rightRail.remove(this);
+        },
+        
         addLogo: function(sectionData) {
         	//one line, doing same as above
         	this.logos.push(BI.ko.wrap($.extend(true,{},dataModel.rightRail[0].logos[0])))
+        },
+        deleteLogo: function(currentlogo, ev) {
+            $ev = $(ev.srcElement)
+            var index = $ev.parents('.sponsor').index();
+            vm.rightRail()[index].logos.remove(this);
         },
         save: function() {
 			//we delegate to the data module, passing the entire viewModel
@@ -47,6 +57,8 @@
 
 			//extend the viewModel with the operations we defined earlier
 			$.extend(true,viewModel,operations);
+
+            vm = viewModel;
 
 			//initialize the knockout DOM bindings
 			ko.applyBindings(viewModel);
