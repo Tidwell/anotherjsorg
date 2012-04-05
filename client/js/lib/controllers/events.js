@@ -17,6 +17,9 @@
     		//add knockout datatypes and append to speakers
     	    this.speakers.push(BI.ko.wrap(copy));
     	},
+        deleteSpeaker: function(currentspeaker, ev) {
+            vm.speakers.remove(this);
+        },
         addSection: function() {
         	//one line, doing same as above
         	this.rightRail.push(BI.ko.wrap($.extend(true,{},dataModel.rightRail[0])));

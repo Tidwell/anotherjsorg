@@ -34,13 +34,14 @@
       <div data-bind="sortable: {data: speakers,connectClass: 'speakers'}">
         <div class="speaker">
 
-          <p><label>Photo:</label><input type="text" data-bind="value: title" /></p>
+          <p><label>Photo:</label><input type="text" data-bind="value: photo" /></p>
           <p><label>Name:</label><input type="text" data-bind="value: name" /></p>
           <p><label>Title:</label><input type="text" data-bind="value: title" /></p>
           <p><label>Comapny:</label><input type="text" data-bind="value: company" /></p>
           <p><label>Bio</label><textarea rows="8" cols="80" data-bind="tinymce: bio"></textarea>
           <p><label>Featured on Main Page</label><input type="checkbox" data-bind="checked: featured" /></p>
           <hr />
+          <button data-bind="click: $parent.deleteSpeaker">-Delete Speaker</button>
         </div>
       </div>
       <button data-bind="click: addSpeaker">+Add Speaker</button>
