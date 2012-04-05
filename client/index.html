@@ -23,11 +23,11 @@
       <p><label>Show Register Buton</label><input type="checkbox" data-bind="checked: register_button" /></p>
       <p><label>Event Logo:</label><input type="text" data-bind="value: logo" /></p>
       <p><label>Eventbright / Ticketleap Url</label><input type="text" data-bind="value: register_url" class="url"/></p>
-      <p><label>Landing Page Content</label><textarea rows="8" cols="80" data-bind="value: landing_content"></textarea>
+      <p><label>Landing Page Content</label><textarea rows="8" cols="80" data-bind="tinymce: landing_content"></textarea>
       <p><label>Nav Color</label><input type="text" data-bind="colorpicker: nav_color_picker, value: nav_color_picker" /></p>
 
     <h2>Agenda</h2>
-      <p><label>Agenda Page Content</label><textarea rows="8" cols="80" data-bind="value: agenda_content"></textarea>
+      <p><label>Agenda Page Content</label><textarea rows="8" cols="80" data-bind="tinymce: agenda_content"></textarea>
 
     <h2>Speakers</h2>
       <p><label>Header:</label><input type="text" data-bind="value: speakers_header" /></p>
@@ -38,7 +38,7 @@
           <p><label>Name:</label><input type="text" data-bind="value: name" /></p>
           <p><label>Title:</label><input type="text" data-bind="value: title" /></p>
           <p><label>Comapny:</label><input type="text" data-bind="value: company" /></p>
-          <p><label>Bio</label><textarea rows="8" cols="80" data-bind="value: bio"></textarea>
+          <p><label>Bio</label><textarea rows="8" cols="80" data-bind="tinymce: bio"></textarea>
           <p><label>Featured on Main Page</label><input type="checkbox" data-bind="checked: featured" /></p>
           <hr />
         </div>
@@ -46,19 +46,19 @@
       <button data-bind="click: addSpeaker">+Add Speaker</button>
 
     <h2>Venue</h2>
-      <p><label>Venue Page Content</label><textarea rows="8" cols="80" data-bind="value: venue_content"></textarea>
+      <p><label>Venue Page Content</label><textarea rows="8" cols="80" data-bind="tinymce: venue_content"></textarea>
 
     <h2>Tickets</h2>
-      <p><label>Tickets Page Content</label><textarea rows="8" cols="80" data-bind="value: tickets_content"></textarea>
+      <p><label>Tickets Page Content</label><textarea rows="8" cols="80" data-bind="tinymce: tickets_content"></textarea>
 
     <h2>Sponsors</h2>
-      <p><label>Sponsors Page Content</label><textarea rows="8" cols="80" data-bind="value: sponsor_content"></textarea>
+      <p><label>Sponsors Page Content</label><textarea rows="8" cols="80" data-bind="tinymce: sponsor_content"></textarea>
 
     <h2>Contact</h2>
-      <p><label>Contact Page Content</label><textarea rows="8" cols="80" data-bind="value: contact_content"></textarea>
+      <p><label>Contact Page Content</label><textarea rows="8" cols="80" data-bind="tinymce: contact_content"></textarea>
 
     <h2>Press</h2>
-      <p><label>Press Content</label><textarea rows="8" cols="80" data-bind="value: press_content"></textarea>
+      <p><label>Press Content</label><textarea rows="8" cols="80" data-bind="tinymce: press_content"></textarea>
 
     <h2>Sponsor Right Rail</h2>
       <div data-bind="sortable: rightRail">
@@ -88,6 +88,10 @@
 
   <!-- JavaScript at the bottom for fast page loading -->
 
+  
+  <!-- Other Libs -->
+  <script type='text/javascript' src='js/vendor/tinymce/tiny_mce.js'></script>
+
   <!-- jQuery & plugins -->
   <!-- Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
@@ -95,6 +99,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
   <script type='text/javascript' src='js/vendor/jquery.validate.js'></script>
   <script type='text/javascript' src='js/vendor/jquery.colorpicker.js'></script>
+  <script type='text/javascript' src='js/vendor/jquery.tinymce.js'></script>
 
   <!-- Knockout & vendor plugins -->
   <script type='text/javascript' src='js/vendor/knockout.js'></script>
@@ -104,6 +109,7 @@
   <!-- Custom Knockout plugins -->
   <script type='text/javascript' src='js/lib/plugin-adaptors/colorpicker.js'></script>
   <script type='text/javascript' src='js/lib/plugin-adaptors/source.js'></script>
+  <script type='text/javascript' src='js/lib/plugin-adaptors/tinymce.js'></script>
 
   <!-- Custom BI lib -->
   <script type='text/javascript' src='js/lib/BI/base.js'></script>
