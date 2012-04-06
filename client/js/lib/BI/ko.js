@@ -22,12 +22,49 @@ dependancies: jquery, knockout, knockout.mapping, base
 	  		blankObj = opt.dataTemplate,
 	  		compositeObj;
 
-	  	//create a copy and merge the data into the blank object (just in case its missing something)
-	  	compositeObj = $.extend(true,$.extend(true,{},blankObj),data);
+		var compositeObj = templateExtend(data,blankObj)
+
 	  	//apply custom knockout bindings
 	  	vm = wrap(compositeObj);
 
 		return vm;
+	}
+
+	//merges data into object based on a blank object (with templating support for arrays)
+	//this allows us to assure that when objects are nested in arrays, they will still have all
+	//the properties in the blank
+  	function templateExtend(obj,blank) {
+	  	//iterate over the blank
+	  	for (property in blank) {
+	  		if (blank.hasOwnProperty(property)) {
+	  			//if the object already has the property, we'll run it through the array template extend
+	  			//this is the only portion of this loop that is not identical to the behavior of $.extend(true,[...])
+	  			if (obj[property]) {
+	  				obj[property] = arrayItemTemplateExtend(obj[property],blank[property]);
+	  				continue;
+	  			}
+	  			//if the new obj doesn't have the property, add it
+	  			if (typeof obj[property] == 'undefined') {
+	  				obj[property] = blank[property]
+	  			} else {
+	  				//otherwise its already got the property, so lets keep extending
+	  				templateExtend(obj[property],blank[property])
+	  			}
+	  		}
+	  	}
+	  	return obj;
+	}
+
+	//takes an arbitrary object and a blank "template" object
+	//if the item is an array, will call extend for each item in the array
+	//thus ensuring that each item in the array has the same fields as the blank
+	function arrayItemTemplateExtend(item,blank) {
+		if (item instanceof Array) {
+			$(item).each(function(i,val){
+				templateExtend(val,blank[0])
+			})
+		}
+		return item;
 	}
 
 	/*
@@ -40,6 +77,7 @@ dependancies: jquery, knockout, knockout.mapping, base
 	//expose methods to the BI namespace
 	BI.ko = {
 		constructViewModel: constructViewModel,
-		wrap: wrap
+		wrap: wrap,
+		templateExtend: templateExtend
 	};
 }(jQuery, ko, BI))

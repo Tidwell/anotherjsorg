@@ -87,8 +87,8 @@ dummyEvent = {
 	id: 123,
     speakers_header: 'featured speakers',
 	speakers: [
-		{ photo: 'atandt.jpg', name: 'Bob', title: 'most awesome officer', company: 'AT&T', featured: 1, bio: 123 },
-		{ photo: 'john.jpg', name: 'John', title: 'CFO', company: 'AT&T', featured: 0, bio: 123 },
+		{ photo: 'atandt.jpg', name: 'Bob', title: 'most awesome officer', company: 'AT&T'},
+		{ photo: 'john.jpg', name: 'John'},
 		{ photo: 'bob.jpg', name: 'Bob', title: 'lead hacker', company: 'gawker', featured: 1, bio: 123 }
 	],
     venue_content: 'venue_content venue_content venue_content venue_content venue_content venue_content venue_content venue_content venue_content venue_content venue_content venue_content venue_content venue_content venue_content venue_content venue_content venue_content venue_content venue_content venue_content',
@@ -98,11 +98,11 @@ dummyEvent = {
     press_content: 'press_content press_content press_content press_content press_content press_content press_content press_content press_content press_content press_content press_content press_content press_content press_content press_content press_content press_content press_content press_content press_content',
 	rightRail: [
 		{ header: 'section CAT', logos: [
-                                        { img: 'panther.jpg', url: 'http:://panther.com' },
+                                        { img: 'panther.jpg'},
                                         { img: 'cheetah.jpg', url: 'http:://cheetah.com' },
                                         { img: 'lion.jpg', url: 'http:://lion.com' }
                                         ] },
-		{ header: 'section DOG', logos: [
+		{ 						  logos: [
                                         { img: 'pointer.jpg', url: 'http:://pointer.com' },
                                         { img: 'wolfhound.jpg', url: 'http:://wolfhound.com' }
                                         ] }
