@@ -67,6 +67,40 @@ dependancies: jquery, knockout, knockout.mapping, base
 		return item;
 	}
 
+	
+
+	//recursively removes the __ko_mapping__
+	//property from objects, also recurses over values
+	//inside of arrays and calls recursiveRemove
+	function recursiveRemoveKoMap(d) {
+		if (typeof d == 'object' && d.__ko_mapping__) {
+			delete d.__ko_mapping__;
+		}
+		for (property in d) {
+	  		if (d.hasOwnProperty(property)) {
+	  			if (d[property] instanceof Array) {
+	  				$(d[property]).each(function(i,val) {
+	  					if (typeof val == 'object') {
+		  					recursiveRemoveKoMap(val)
+		  				}
+	  				});
+	  			}
+	  			else if (typeof d[property]=='object') {
+	  				recursiveRemoveKoMap(d[property]);
+	  			}
+	  		}
+	  	}
+	  	return d;
+	}
+
+
+	function sanitize(data) {
+		data = ko.toJSON(data);
+		data = eval('('+data+')');
+		data = recursiveRemoveKoMap(data);
+		return data;
+	}
+
 	/*
 	A wrapper for ko.mapping.fromJS
 	*/
@@ -78,6 +112,7 @@ dependancies: jquery, knockout, knockout.mapping, base
 	BI.ko = {
 		constructViewModel: constructViewModel,
 		wrap: wrap,
-		templateExtend: templateExtend
+		templateExtend: templateExtend,
+		sanitize: sanitize
 	};
 }(jQuery, ko, BI))

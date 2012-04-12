@@ -1,6 +1,7 @@
 (function($,ko,BI,undefined) {
 	BI.namespace('data')
 
+	//returns dummy content
 	function get(opts) {
 	  var   callback = opts.callback,
 	  		id = opts.id,
@@ -16,17 +17,12 @@
 	  }
 	}
 
-
 	function save(type,data) {
-		//make a copy of the data just in case
+		//make a copy of the data to prevent the transormations from mucking
+		//with the viewmodel
 		data = $.extend(true,{},data);
-		//remove the ko property
-		delete data.__ko_mapping__;
-		//convert to json
-		data = ko.toJSON(data);
-
-		//make ajax call (todo) - just console.log the result
-		data = eval('('+data+')');
+		//get a clean object without any knockout stuff
+		data = BI.ko.sanitize(data);
 		console.log('saved '+type,data);
 	}
 
