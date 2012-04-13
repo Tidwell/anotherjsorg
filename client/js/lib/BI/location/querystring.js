@@ -1,10 +1,26 @@
-// Helper to get querystring params
-// If more flexable URI manipulation required, replace with: 
-// https://github.com/medialize/URI.js
+/**
+	@module querystring
+**/
+
+/**
+	@class querystring
+	@namespace BI.location
+**/
 (function($,ko,BI,undefined) {
 	var exposed;
 
 	BI.namespace('location')
+
+	/** 
+		Helper to get querystring params
+		
+		If more flexable URI manipulation required, replace with: https://github.com/medialize/URI.js
+
+		@method get
+		@param {String} key
+
+		@return {String} URI decoded value
+	**/
 
 	function getParameterByName(name) {
 	  name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");

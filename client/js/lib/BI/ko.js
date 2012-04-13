@@ -1,19 +1,28 @@
-/*
-Custom helper functions for doing basic tasks with data sets and knockout
+/**
+	Custom helper functions for doing basic tasks with data sets and knockout
 
-dependancies: jquery, knockout, knockout.mapping, base
-*/
+	@module ko
+	@requires jquery, knockout, knockout.mapping, base
+**/
+
+/**
+	Custom helper functions for doing basic tasks with data sets and knockout
+	@class ko
+	@namespace BI
+**/
 (function($,ko,BI,undefined) {
 	BI.namespace('ko')
 
-	/*
-	Constructs a new view model, creating knockout.js data types 
+	/**
+		Constructs a new view model, wrapping an object with knockout.js data types 
+		and filling in any missing properties that exist on the dataTemplate
 
-	opt.data - the populated version of the data model
-	opt.dataTemplate - empty version of the data model
+		@method constructViewModel
+		@param {Object} options
+			@param {Object} [options.data] Populated object matching options.dataTemplate
+			@param {Object} options.dataTemplate Empty template object with single examples for arrays
 
-	returns a knockout extended version of the data with blank values for
-	any unset properties that exist on dataTemplate
+		@return {object} Merged, Knockout-extended version of data
 
 	*/
 	function constructViewModel(opt) {
@@ -23,16 +32,23 @@ dependancies: jquery, knockout, knockout.mapping, base
 	  		compositeObj;
 
 		var compositeObj = templateExtend(data,blankObj)
-
 	  	//apply custom knockout bindings
 	  	vm = wrap(compositeObj);
 
 		return vm;
 	}
 
-	//merges data into object based on a blank object (with templating support for arrays)
-	//this allows us to assure that when objects are nested in arrays, they will still have all
-	//the properties in the blank
+	/**
+		Merges data into object based on a blank object (with templating support for arrays)
+		this allows us to assure that when objects are nested in arrays, they will still have all
+		the properties in the blank.
+
+		@method templateExtend
+		@param {Object} populated
+		@param {Object} template
+
+		@return {Object} fully merged object
+	**/
   	function templateExtend(obj,blank) {
 	  	//iterate over the blank
 	  	for (property in blank) {
@@ -55,9 +71,18 @@ dependancies: jquery, knockout, knockout.mapping, base
 	  	return obj;
 	}
 
-	//takes an arbitrary object and a blank "template" object
-	//if the item is an array, will call extend for each item in the array
-	//thus ensuring that each item in the array has the same fields as the blank
+	/**
+		Takes an arbitrary variable and a blank "template" object
+		if the item is an array, will call extend for each item in the array
+		thus ensuring that each item in the array has the same fields as the blank
+
+		@method arrayItemTemplateExtend
+		@private
+		@param {Any} any value
+		@param {Object} blank object template
+
+		@return cleaned item
+	**/
 	function arrayItemTemplateExtend(item,blank) {
 		if (item instanceof Array) {
 			$(item).each(function(i,val){
@@ -69,9 +94,16 @@ dependancies: jquery, knockout, knockout.mapping, base
 
 	
 
-	//recursively removes the __ko_mapping__
-	//property from objects, also recurses over values
-	//inside of arrays and calls recursiveRemove
+	/**
+		Recursively removes the __ko_mapping__ property from objects, also recurses over values
+		inside of arrays and removes properties from any objects
+
+		@method recursiveRemoveKoMap
+		@private
+		@param {object} any object
+
+		@return {object} cleaned object
+	**/
 	function recursiveRemoveKoMap(d) {
 		if (typeof d == 'object' && d.__ko_mapping__) {
 			delete d.__ko_mapping__;
@@ -93,17 +125,31 @@ dependancies: jquery, knockout, knockout.mapping, base
 	  	return d;
 	}
 
+	/**
+		An unwrapper for knockout viewmodels to get plain javascript objects
 
-	function sanitize(data) {
+		@method unwrap
+		@param {Object} knockout-extended Object
+
+		@return {Object} cleaned Object
+	**/
+	function unwrap(data) {
+		//converts data form knockout observables to stringified-json
 		data = ko.toJSON(data);
-		data = eval('('+data+')');
+		//parse back to json
+		data = JSON.parse(data);
 		data = recursiveRemoveKoMap(data);
 		return data;
 	}
 
-	/*
-	A wrapper for ko.mapping.fromJS
-	*/
+	/**
+		A wrapper for ko.mapping.fromJS
+
+		@method wrap
+		@param {Object} Any object
+
+		@return {Object} ko.mapping.fromJS(param)
+	**/
 	function wrap(data) {
 		return ko.mapping.fromJS(data);		
 	}
@@ -113,6 +159,6 @@ dependancies: jquery, knockout, knockout.mapping, base
 		constructViewModel: constructViewModel,
 		wrap: wrap,
 		templateExtend: templateExtend,
-		sanitize: sanitize
+		unwrap: unwrap
 	};
 }(jQuery, ko, BI))

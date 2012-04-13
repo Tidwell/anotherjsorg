@@ -1,17 +1,27 @@
-/*
-    Define our global variable (and only entry point
-    Provides utility methods for adding features to itself
-
-    This is a singleton defined using the Revealing Module Pattern
-
-    Dependancy: jquery
-*/
+/**
+    Define our global BI variable (and organization methods)
+    This is a singleton defined using the Revealing Module Pattern 
+    
+    @module base
+    @requires jquery
+**/
+/**
+    Provides utility methods for adding features to the global object
+    @class BI
+    @static   
+**/
 
 (function($, window, undefined) {
     var exposed;
 
-    //takes a key (string) and an object to add to the
-    //BI global as a module
+    /**
+        Takes a dot-deliminated (string) and ensures it exists on global BI object
+        http://elegantcode.com/2011/01/26/basic-javascript-part-8-namespaces/
+
+        @method namespace
+        @param {String} dot.deliminated.namespace 
+        @return {Object} parent of namespace (allows direct assignment)
+    **/
     function namespace(namespaceString) {
 	    var parts = namespaceString.split('.'),
 	        parent = exposed,

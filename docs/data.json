@@ -1,0 +1,334 @@
+{
+    "project": {},
+    "files": {
+        "client/js/lib/BI/location/querystring.js": {
+            "name": "client/js/lib/BI/location/querystring.js",
+            "modules": {
+                "querystring": 1
+            },
+            "classes": {
+                "BI.location.querystring": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "BI.location": 1
+            }
+        },
+        "client/js/lib/BI/base.js": {
+            "name": "client/js/lib/BI/base.js",
+            "modules": {
+                "base": 1
+            },
+            "classes": {
+                "BI": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "client/js/lib/BI/ko.js": {
+            "name": "client/js/lib/BI/ko.js",
+            "modules": {
+                "ko": 1
+            },
+            "classes": {
+                "BI.ko": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "BI": 1
+            }
+        }
+    },
+    "modules": {
+        "querystring": {
+            "name": "querystring",
+            "submodules": {},
+            "classes": {
+                "BI.location.querystring": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "BI.location": 1
+            },
+            "tag": "module",
+            "file": "client/js/lib/BI/location/querystring.js",
+            "line": 5
+        },
+        "base": {
+            "name": "base",
+            "submodules": {},
+            "classes": {
+                "BI": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "client/js/lib/BI/base.js",
+            "line": 8,
+            "description": "Define our global BI variable (and organization methods)\nThis is a singleton defined using the Revealing Module Pattern",
+            "requires": [
+                "jquery"
+            ]
+        },
+        "ko": {
+            "name": "ko",
+            "submodules": {},
+            "classes": {
+                "BI.ko": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "BI": 1
+            },
+            "tag": "module",
+            "file": "client/js/lib/BI/ko.js",
+            "line": 8,
+            "description": "Custom helper functions for doing basic tasks with data sets and knockout",
+            "requires": [
+                "jquery",
+                "knockout",
+                "knockout.mapping",
+                "base"
+            ]
+        }
+    },
+    "classes": {
+        "BI.location.querystring": {
+            "name": "BI.location.querystring",
+            "shortname": "BI.location.querystring",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "querystring",
+            "namespace": "BI.location",
+            "file": "client/js/lib/BI/location/querystring.js",
+            "line": 5
+        },
+        "BI": {
+            "name": "BI",
+            "shortname": "BI",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "base",
+            "namespace": "",
+            "file": "client/js/lib/BI/base.js",
+            "line": 8,
+            "description": "Provides utility methods for adding features to the global object",
+            "static": 1
+        },
+        "BI.ko": {
+            "name": "BI.ko",
+            "shortname": "BI.ko",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ko",
+            "namespace": "BI",
+            "file": "client/js/lib/BI/ko.js",
+            "line": 8,
+            "description": "Custom helper functions for doing basic tasks with data sets and knockout"
+        }
+    },
+    "classitems": [
+        {
+            "file": "client/js/lib/BI/location/querystring.js",
+            "line": 14,
+            "description": "Helper to get querystring params\n\nIf more flexable URI manipulation required, replace with: https://github.com/medialize/URI.js",
+            "itemtype": "method",
+            "name": "get",
+            "params": [
+                {
+                    "name": "key",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "URI decoded value",
+                "type": "String"
+            },
+            "class": "BI.location.querystring",
+            "module": "querystring",
+            "namespace": "BI.location"
+        },
+        {
+            "file": "client/js/lib/BI/base.js",
+            "line": 17,
+            "description": "Takes a dot-deliminated (string) and ensures it exists on global BI object\nhttp://elegantcode.com/2011/01/26/basic-javascript-part-8-namespaces/",
+            "itemtype": "method",
+            "name": "namespace",
+            "params": [
+                {
+                    "name": "dot.deliminated.namespace",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "parent of namespace (allows direct assignment)",
+                "type": "Object"
+            },
+            "class": "BI",
+            "module": "base"
+        },
+        {
+            "file": "client/js/lib/BI/ko.js",
+            "line": 16,
+            "description": "Constructs a new view model, wrapping an object with knockout.js data types \nand filling in any missing properties that exist on the dataTemplate",
+            "itemtype": "method",
+            "name": "constructViewModel",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "data",
+                            "description": "Populated object matching options.dataTemplate",
+                            "type": "Object",
+                            "optional": true
+                        },
+                        {
+                            "name": "dataTemplate",
+                            "description": "Empty template object with single examples for arrays",
+                            "type": "Object"
+                        }
+                    ]
+                }
+            ],
+            "return": {
+                "description": "Merged, Knockout-extended version of data",
+                "type": "Object"
+            },
+            "class": "BI.ko",
+            "module": "ko",
+            "namespace": "BI"
+        },
+        {
+            "file": "client/js/lib/BI/ko.js",
+            "line": 41,
+            "description": "Merges data into object based on a blank object (with templating support for arrays)\nthis allows us to assure that when objects are nested in arrays, they will still have all\nthe properties in the blank.",
+            "itemtype": "method",
+            "name": "templateExtend",
+            "params": [
+                {
+                    "name": "populated",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "template",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "fully merged object",
+                "type": "Object"
+            },
+            "class": "BI.ko",
+            "module": "ko",
+            "namespace": "BI"
+        },
+        {
+            "file": "client/js/lib/BI/ko.js",
+            "line": 74,
+            "description": "Takes an arbitrary variable and a blank \"template\" object\nif the item is an array, will call extend for each item in the array\nthus ensuring that each item in the array has the same fields as the blank",
+            "itemtype": "method",
+            "name": "arrayItemTemplateExtend",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "any",
+                    "description": "value",
+                    "type": "Any"
+                },
+                {
+                    "name": "blank",
+                    "description": "object template",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "cleaned item"
+            },
+            "class": "BI.ko",
+            "module": "ko",
+            "namespace": "BI"
+        },
+        {
+            "file": "client/js/lib/BI/ko.js",
+            "line": 97,
+            "description": "Recursively removes the __ko_mapping__ property from objects, also recurses over values\ninside of arrays and removes properties from any objects",
+            "itemtype": "method",
+            "name": "recursiveRemoveKoMap",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "any",
+                    "description": "object",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "cleaned object",
+                "type": "Object"
+            },
+            "class": "BI.ko",
+            "module": "ko",
+            "namespace": "BI"
+        },
+        {
+            "file": "client/js/lib/BI/ko.js",
+            "line": 128,
+            "description": "An unwrapper for knockout viewmodels to get plain javascript objects",
+            "itemtype": "method",
+            "name": "unwrap",
+            "params": [
+                {
+                    "name": "knockout-extended",
+                    "description": "Object",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "cleaned Object",
+                "type": "Object"
+            },
+            "class": "BI.ko",
+            "module": "ko",
+            "namespace": "BI"
+        },
+        {
+            "file": "client/js/lib/BI/ko.js",
+            "line": 145,
+            "description": "A wrapper for ko.mapping.fromJS",
+            "itemtype": "method",
+            "name": "wrap",
+            "params": [
+                {
+                    "name": "Any",
+                    "description": "object",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "ko.mapping.fromJS(param)",
+                "type": "Object"
+            },
+            "class": "BI.ko",
+            "module": "ko",
+            "namespace": "BI"
+        }
+    ]
+}

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>client&#x2F;js&#x2F;lib&#x2F;BI&#x2F;ko.js</title>
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="..&#x2F;assets/css/logo.png" title=""></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: </em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="..&#x2F;classes/BI.html">BI</a></li>
+            
+                <li><a href="..&#x2F;classes/BI.ko.html">BI.ko</a></li>
+            
+                <li><a href="..&#x2F;classes/BI.location.querystring.html">BI.location.querystring</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="..&#x2F;modules/base.html">base</a></li>
+            
+                <li><a href="..&#x2F;modules/ko.html">ko</a></li>
+            
+                <li><a href="..&#x2F;modules/querystring.html">querystring</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1 class="file-heading">File: client&#x2F;js&#x2F;lib&#x2F;BI&#x2F;ko.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;**
+	Custom helper functions for doing basic tasks with data sets and knockout
+
+	@module ko
+	@requires jquery, knockout, knockout.mapping, base
+**&#x2F;
+
+&#x2F;**
+	Custom helper functions for doing basic tasks with data sets and knockout
+	@class ko
+	@namespace BI
+**&#x2F;
+(function($,ko,BI,undefined) {
+	BI.namespace(&#x27;ko&#x27;)
+
+	&#x2F;**
+		Constructs a new view model, wrapping an object with knockout.js data types 
+		and filling in any missing properties that exist on the dataTemplate
+
+		@method constructViewModel
+		@param {Object} options
+			@param {Object} [options.data] Populated object matching options.dataTemplate
+			@param {Object} options.dataTemplate Empty template object with single examples for arrays
+
+		@return {object} Merged, Knockout-extended version of data
+
+	*&#x2F;
+	function constructViewModel(opt) {
+	  	var vm,
+	  		data = opt.data,
+	  		blankObj = opt.dataTemplate,
+	  		compositeObj;
+
+		var compositeObj = templateExtend(data,blankObj)
+	  	&#x2F;&#x2F;apply custom knockout bindings
+	  	vm = wrap(compositeObj);
+
+		return vm;
+	}
+
+	&#x2F;**
+		Merges data into object based on a blank object (with templating support for arrays)
+		this allows us to assure that when objects are nested in arrays, they will still have all
+		the properties in the blank.
+
+		@method templateExtend
+		@param {Object} populated
+		@param {Object} template
+
+		@return {Object} fully merged object
+	**&#x2F;
+  	function templateExtend(obj,blank) {
+	  	&#x2F;&#x2F;iterate over the blank
+	  	for (property in blank) {
+	  		if (blank.hasOwnProperty(property)) {
+	  			&#x2F;&#x2F;if the object already has the property, we&#x27;ll run it through the array template extend
+	  			&#x2F;&#x2F;this is the only portion of this loop that is not identical to the behavior of $.extend(true,[...])
+	  			if (obj[property]) {
+	  				obj[property] = arrayItemTemplateExtend(obj[property],blank[property]);
+	  				continue;
+	  			}
+	  			&#x2F;&#x2F;if the new obj doesn&#x27;t have the property, add it
+	  			if (typeof obj[property] == &#x27;undefined&#x27;) {
+	  				obj[property] = blank[property]
+	  			} else {
+	  				&#x2F;&#x2F;otherwise its already got the property, so lets keep extending
+	  				templateExtend(obj[property],blank[property])
+	  			}
+	  		}
+	  	}
+	  	return obj;
+	}
+
+	&#x2F;**
+		Takes an arbitrary variable and a blank &quot;template&quot; object
+		if the item is an array, will call extend for each item in the array
+		thus ensuring that each item in the array has the same fields as the blank
+
+		@method arrayItemTemplateExtend
+		@private
+		@param {Any} any value
+		@param {Object} blank object template
+
+		@return cleaned item
+	**&#x2F;
+	function arrayItemTemplateExtend(item,blank) {
+		if (item instanceof Array) {
+			$(item).each(function(i,val){
+				templateExtend(val,blank[0])
+			})
+		}
+		return item;
+	}
+
+	
+
+	&#x2F;**
+		Recursively removes the __ko_mapping__ property from objects, also recurses over values
+		inside of arrays and removes properties from any objects
+
+		@method recursiveRemoveKoMap
+		@private
+		@param {object} any object
+
+		@return {object} cleaned object
+	**&#x2F;
+	function recursiveRemoveKoMap(d) {
+		if (typeof d == &#x27;object&#x27; &amp;&amp; d.__ko_mapping__) {
+			delete d.__ko_mapping__;
+		}
+		for (property in d) {
+	  		if (d.hasOwnProperty(property)) {
+	  			if (d[property] instanceof Array) {
+	  				$(d[property]).each(function(i,val) {
+	  					if (typeof val == &#x27;object&#x27;) {
+		  					recursiveRemoveKoMap(val)
+		  				}
+	  				});
+	  			}
+	  			else if (typeof d[property]==&#x27;object&#x27;) {
+	  				recursiveRemoveKoMap(d[property]);
+	  			}
+	  		}
+	  	}
+	  	return d;
+	}
+
+	&#x2F;**
+		An unwrapper for knockout viewmodels to get plain javascript objects
+
+		@method unwrap
+		@param {Object} knockout-extended Object
+
+		@return {Object} cleaned Object
+	**&#x2F;
+	function unwrap(data) {
+		&#x2F;&#x2F;converts data form knockout observables to stringified-json
+		data = ko.toJSON(data);
+		&#x2F;&#x2F;parse back to json
+		data = JSON.parse(data);
+		data = recursiveRemoveKoMap(data);
+		return data;
+	}
+
+	&#x2F;**
+		A wrapper for ko.mapping.fromJS
+
+		@method wrap
+		@param {Object} Any object
+
+		@return {Object} ko.mapping.fromJS(param)
+	**&#x2F;
+	function wrap(data) {
+		return ko.mapping.fromJS(data);		
+	}
+
+	&#x2F;&#x2F;expose methods to the BI namespace
+	BI.ko = {
+		constructViewModel: constructViewModel,
+		wrap: wrap,
+		templateExtend: templateExtend,
+		unwrap: unwrap
+	};
+}(jQuery, ko, BI))
+    </pre>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="..&#x2F;assets/js/yui-prettify.js"></script>
+<script src="..&#x2F;assets/../api.js"></script>
+<script src="..&#x2F;assets/js/api-filter.js"></script>
+<script src="..&#x2F;assets/js/api-list.js"></script>
+<script src="..&#x2F;assets/js/api-search.js"></script>
+<script src="..&#x2F;assets/js/apidocs.js"></script>
+</body>
+</html>
