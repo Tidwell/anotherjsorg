@@ -7,7 +7,10 @@ In ./ run
 #Docs
 
 Build docs by using YUIDoc (node version)
+Install:
+	`npm -g install yuidocjs`  
 	http://davglass.github.com/yuidocjs/
+
 
 In ./ run  
   `yuidoc -o ./docs ./assets/js/lib/BI/`
