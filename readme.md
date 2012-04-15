@@ -6,8 +6,8 @@ In ./ run
 
 #Docs
 
-Build docs by using YUIDoc (node version)
-Install:
+Build docs by using YUIDoc (node version)  
+Install:  
 	`npm -g install yuidocjs`  
 	http://davglass.github.com/yuidocjs/
 
