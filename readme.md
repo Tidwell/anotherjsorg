@@ -1,18 +1,18 @@
 #Install
 Requires: node, npm
 
-In ./ run  
+To install, in ./ run  
 	`npm install`
 
 #Docs
 
-Build docs by using YUIDoc (node version)  
-Install:  
+Docs use YUIDoc (node version)  
+To Install:  
 	`npm -g install yuidocjs`  
 	http://davglass.github.com/yuidocjs/
 
 
-In ./ run  
+To build, in ./ run  
   `yuidoc -o ./docs ./assets/js/lib/BI/`
 
 Docs will need to be opened locally (open ./docs/index.html)
