@@ -1,18 +1,24 @@
+#Install
+Requires: node, npm
+
+In ./ run  
+	`npm install`
+
 #Docs
 
 Build docs by using YUIDoc (node version)
 	http://davglass.github.com/yuidocjs/
 
-In ./ run 
-  yuidoc -o ./docs ./assets/js/lib/BI/
+In ./ run  
+  `yuidoc -o ./docs ./assets/js/lib/BI/`
 
 Docs will need to be opened locally (open ./docs/index.html)
 
 
 #Static Server
 
-In ./ run
-	node server.js &
+In ./ run  
+  `node server.js &`
 
 View at: http://localhost:8080/sample
 
