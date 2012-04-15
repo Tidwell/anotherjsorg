@@ -14,22 +14,23 @@ Docs will need to be opened locally (open ./docs/index.html)
 For static server, run
 
 node server.js &
-http://localhost:8080/sample
+
+View at: http://localhost:8080/sample
 
 
 #Todo
 
-##General
+###General
 1.  Get rid of BI.data - no reason to abstract ajax
 2.  Simplify examples
 3.  Figure out a way to document controllers & plugin adapters under separate catagories
 4.  Choose testing framework
 
-##Widget Conversions
+###Widget Conversions
 1.  Images
 2.  Data-source 
 3.  Catagories
 
 
-##PHP Controller Conversions
+###PHP Controller Conversions
 1. Events
