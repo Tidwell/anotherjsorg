@@ -6,6 +6,16 @@ Build docs by using YUIDoc (node version)
 In ./ run 
 	yuidoc -o ./docs ./assets/js/lib/BI/
 
+Docs will need to be opened locally (open ./docs/index.html)
+
+
+#Static Server
+
+For static server, run
+
+node server.js &
+http://localhost:8080/sample
+
 
 #Todo
 
