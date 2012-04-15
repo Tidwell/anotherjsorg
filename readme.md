@@ -4,7 +4,7 @@ Build docs by using YUIDoc (node version)
 	http://davglass.github.com/yuidocjs/
 
 In ./ run 
-	yuidoc -o ./docs ./assets/js/lib/BI/
+  yuidoc -o ./docs ./assets/js/lib/BI/
 
 Docs will need to be opened locally (open ./docs/index.html)
 

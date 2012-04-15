@@ -1,10 +1,11 @@
 {
-  "name": "BI CMS JS",
+  "name": "BI-CMS-JS",
+  "version": "0.0.1",
   "description": "BI CMS JS",
   "author": "BI",
   "dependencies": {
     "node-static": "0.5.9",
-    "yuidoc": "0.2.39",
+    "yuidocjs": "0.2.39"
   },
   "engine": "node >= 0.6.6"
 }
