@@ -2,12 +2,12 @@ YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
         "BI",
-        "BI.ko",
-        "BI.location.querystring"
+        "BI.location.querystring",
+        "BI.mvvm"
     ],
     "modules": [
         "base",
-        "ko",
+        "mvvm",
         "querystring"
     ],
     "allModules": [
@@ -17,9 +17,9 @@ YUI.add("yuidoc-meta", function(Y) {
             "description": "Define our global BI variable (and organization methods)\nThis is a singleton defined using the Revealing Module Pattern"
         },
         {
-            "displayName": "ko",
-            "name": "ko",
-            "description": "Custom helper functions for doing basic tasks with data sets and knockout"
+            "displayName": "mvvm",
+            "name": "mvvm",
+            "description": "Custom helper functions for doing basic tasks with data sets and knockout\nAbstracted as MVVM should we ever need to replace knockout"
         },
         {
             "displayName": "querystring",

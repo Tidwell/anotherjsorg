@@ -1,0 +1,7 @@
+{
+    "name"       : "use",
+    "displayName": "Using YUIDoc",
+    "description": "Basic Usage",
+    "author"     : "davglass",
+    "projectBase": "../"
+}

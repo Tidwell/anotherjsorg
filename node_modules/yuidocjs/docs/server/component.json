@@ -1,0 +1,8 @@
+{
+    "name"       : "server",
+    "displayName": "The YUIDoc Server",
+    "description": "The YUIDoc Server",
+    "author"     : "davglass",
+    "hideTableOfContents": "true",
+    "projectBase": "../"
+}

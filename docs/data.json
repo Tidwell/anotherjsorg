@@ -1,8 +1,8 @@
 {
     "project": {},
     "files": {
-        "client/js/lib/BI/location/querystring.js": {
-            "name": "client/js/lib/BI/location/querystring.js",
+        "assets/js/lib/BI/location/querystring.js": {
+            "name": "assets/js/lib/BI/location/querystring.js",
             "modules": {
                 "querystring": 1
             },
@@ -14,8 +14,8 @@
                 "BI.location": 1
             }
         },
-        "client/js/lib/BI/base.js": {
-            "name": "client/js/lib/BI/base.js",
+        "assets/js/lib/BI/base.js": {
+            "name": "assets/js/lib/BI/base.js",
             "modules": {
                 "base": 1
             },
@@ -25,13 +25,13 @@
             "fors": {},
             "namespaces": {}
         },
-        "client/js/lib/BI/ko.js": {
-            "name": "client/js/lib/BI/ko.js",
+        "assets/js/lib/BI/mvvm.js": {
+            "name": "assets/js/lib/BI/mvvm.js",
             "modules": {
-                "ko": 1
+                "mvvm": 1
             },
             "classes": {
-                "BI.ko": 1
+                "BI.mvvm": 1
             },
             "fors": {},
             "namespaces": {
@@ -51,7 +51,7 @@
                 "BI.location": 1
             },
             "tag": "module",
-            "file": "client/js/lib/BI/location/querystring.js",
+            "file": "assets/js/lib/BI/location/querystring.js",
             "line": 5
         },
         "base": {
@@ -63,27 +63,27 @@
             "fors": {},
             "namespaces": {},
             "tag": "module",
-            "file": "client/js/lib/BI/base.js",
+            "file": "assets/js/lib/BI/base.js",
             "line": 8,
             "description": "Define our global BI variable (and organization methods)\nThis is a singleton defined using the Revealing Module Pattern",
             "requires": [
                 "jquery"
             ]
         },
-        "ko": {
-            "name": "ko",
+        "mvvm": {
+            "name": "mvvm",
             "submodules": {},
             "classes": {
-                "BI.ko": 1
+                "BI.mvvm": 1
             },
             "fors": {},
             "namespaces": {
                 "BI": 1
             },
             "tag": "module",
-            "file": "client/js/lib/BI/ko.js",
-            "line": 8,
-            "description": "Custom helper functions for doing basic tasks with data sets and knockout",
+            "file": "assets/js/lib/BI/mvvm.js",
+            "line": 9,
+            "description": "Custom helper functions for doing basic tasks with data sets and knockout\nAbstracted as MVVM should we ever need to replace knockout",
             "requires": [
                 "jquery",
                 "knockout",
@@ -103,7 +103,7 @@
             "extension_for": [],
             "module": "querystring",
             "namespace": "BI.location",
-            "file": "client/js/lib/BI/location/querystring.js",
+            "file": "assets/js/lib/BI/location/querystring.js",
             "line": 5
         },
         "BI": {
@@ -116,29 +116,29 @@
             "extension_for": [],
             "module": "base",
             "namespace": "",
-            "file": "client/js/lib/BI/base.js",
+            "file": "assets/js/lib/BI/base.js",
             "line": 8,
             "description": "Provides utility methods for adding features to the global object",
             "static": 1
         },
-        "BI.ko": {
-            "name": "BI.ko",
-            "shortname": "BI.ko",
+        "BI.mvvm": {
+            "name": "BI.mvvm",
+            "shortname": "BI.mvvm",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "ko",
+            "module": "mvvm",
             "namespace": "BI",
-            "file": "client/js/lib/BI/ko.js",
-            "line": 8,
+            "file": "assets/js/lib/BI/mvvm.js",
+            "line": 9,
             "description": "Custom helper functions for doing basic tasks with data sets and knockout"
         }
     },
     "classitems": [
         {
-            "file": "client/js/lib/BI/location/querystring.js",
+            "file": "assets/js/lib/BI/location/querystring.js",
             "line": 14,
             "description": "Helper to get querystring params\n\nIf more flexable URI manipulation required, replace with: https://github.com/medialize/URI.js",
             "itemtype": "method",
@@ -159,7 +159,7 @@
             "namespace": "BI.location"
         },
         {
-            "file": "client/js/lib/BI/base.js",
+            "file": "assets/js/lib/BI/base.js",
             "line": 17,
             "description": "Takes a dot-deliminated (string) and ensures it exists on global BI object\nhttp://elegantcode.com/2011/01/26/basic-javascript-part-8-namespaces/",
             "itemtype": "method",
@@ -179,8 +179,8 @@
             "module": "base"
         },
         {
-            "file": "client/js/lib/BI/ko.js",
-            "line": 16,
+            "file": "assets/js/lib/BI/mvvm.js",
+            "line": 17,
             "description": "Constructs a new view model, wrapping an object with knockout.js data types \nand filling in any missing properties that exist on the dataTemplate",
             "itemtype": "method",
             "name": "constructViewModel",
@@ -208,13 +208,13 @@
                 "description": "Merged, Knockout-extended version of data",
                 "type": "Object"
             },
-            "class": "BI.ko",
-            "module": "ko",
+            "class": "BI.mvvm",
+            "module": "mvvm",
             "namespace": "BI"
         },
         {
-            "file": "client/js/lib/BI/ko.js",
-            "line": 41,
+            "file": "assets/js/lib/BI/mvvm.js",
+            "line": 42,
             "description": "Merges data into object based on a blank object (with templating support for arrays)\nthis allows us to assure that when objects are nested in arrays, they will still have all\nthe properties in the blank.",
             "itemtype": "method",
             "name": "templateExtend",
@@ -234,13 +234,13 @@
                 "description": "fully merged object",
                 "type": "Object"
             },
-            "class": "BI.ko",
-            "module": "ko",
+            "class": "BI.mvvm",
+            "module": "mvvm",
             "namespace": "BI"
         },
         {
-            "file": "client/js/lib/BI/ko.js",
-            "line": 74,
+            "file": "assets/js/lib/BI/mvvm.js",
+            "line": 75,
             "description": "Takes an arbitrary variable and a blank \"template\" object\nif the item is an array, will call extend for each item in the array\nthus ensuring that each item in the array has the same fields as the blank",
             "itemtype": "method",
             "name": "arrayItemTemplateExtend",
@@ -261,13 +261,13 @@
             "return": {
                 "description": "cleaned item"
             },
-            "class": "BI.ko",
-            "module": "ko",
+            "class": "BI.mvvm",
+            "module": "mvvm",
             "namespace": "BI"
         },
         {
-            "file": "client/js/lib/BI/ko.js",
-            "line": 97,
+            "file": "assets/js/lib/BI/mvvm.js",
+            "line": 98,
             "description": "Recursively removes the __ko_mapping__ property from objects, also recurses over values\ninside of arrays and removes properties from any objects",
             "itemtype": "method",
             "name": "recursiveRemoveKoMap",
@@ -284,13 +284,13 @@
                 "description": "cleaned object",
                 "type": "Object"
             },
-            "class": "BI.ko",
-            "module": "ko",
+            "class": "BI.mvvm",
+            "module": "mvvm",
             "namespace": "BI"
         },
         {
-            "file": "client/js/lib/BI/ko.js",
-            "line": 128,
+            "file": "assets/js/lib/BI/mvvm.js",
+            "line": 129,
             "description": "An unwrapper for knockout viewmodels to get plain javascript objects",
             "itemtype": "method",
             "name": "unwrap",
@@ -305,13 +305,13 @@
                 "description": "cleaned Object",
                 "type": "Object"
             },
-            "class": "BI.ko",
-            "module": "ko",
+            "class": "BI.mvvm",
+            "module": "mvvm",
             "namespace": "BI"
         },
         {
-            "file": "client/js/lib/BI/ko.js",
-            "line": 145,
+            "file": "assets/js/lib/BI/mvvm.js",
+            "line": 146,
             "description": "A wrapper for ko.mapping.fromJS",
             "itemtype": "method",
             "name": "wrap",
@@ -326,8 +326,29 @@
                 "description": "ko.mapping.fromJS(param)",
                 "type": "Object"
             },
-            "class": "BI.ko",
-            "module": "ko",
+            "class": "BI.mvvm",
+            "module": "mvvm",
+            "namespace": "BI"
+        },
+        {
+            "file": "assets/js/lib/BI/mvvm.js",
+            "line": 158,
+            "description": "A wrapper for ko.applyBindings",
+            "itemtype": "method",
+            "name": "applyBindings",
+            "params": [
+                {
+                    "name": "Any",
+                    "description": "object",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "ko.applyBindings(param)",
+                "type": "Object"
+            },
+            "class": "BI.mvvm",
+            "module": "mvvm",
             "namespace": "BI"
         }
     ]
