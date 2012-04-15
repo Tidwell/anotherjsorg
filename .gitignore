@@ -6,4 +6,5 @@ Icon?
 Thumbs.db
 
 # Node deps #
-./node_modules
+node_modules/
+
