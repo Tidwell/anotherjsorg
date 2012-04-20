@@ -59,7 +59,7 @@
 
     vm = viewModel;
 
-    console.log(BI)
+    console.log(viewModel)
 	//initialize the DOM bindings
 	BI.mvvm.applyBindings(viewModel);
 

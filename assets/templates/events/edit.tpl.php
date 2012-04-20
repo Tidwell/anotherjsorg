@@ -21,7 +21,7 @@
       <p><label>Event Name</label><input type="text"  data-bind="value: name" /></p>
       <p><label>Url</label><span>businessinsider.com/event/<input type="text" data-bind="value: url" class="url"/></span></p>
       <p><label>Event Tagline</label><input type="text" data-bind="value: tagline" /></p>
-      <p><label>Tagline Color</label><input type="text" data-bind="colorpicker: taglineColor,value: taglineColor" /></p>
+      <p><label>Tagline Color</label><input type="text" data-bind="colorpicker: taglineColor,value: tagline_color" /></p>
       <p><label>Register Button Color</label><input type="text" data-bind="colorpicker: register_button_color, value: register_button_color" /></p>
       <p><label>Show Register Buton</label><input type="checkbox" data-bind="checked: register_button" /></p>
       <p><label>Event Logo:</label><input type="text" data-bind="value: logo" /></p>
