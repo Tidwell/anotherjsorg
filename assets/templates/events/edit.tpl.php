@@ -9,7 +9,7 @@
   <meta charset="utf-8">
   <title>BI CMS Lib V2</title>
   <meta name="viewport" content="width=device-width">
-  <?=fragment('cms/frontendCMSv2_css', $event)?>  
+  <?=fragment('css', $event)?>  
 </head>
 <body>
   <a href="/cms/events/edit?id=<?=$event->id?>">Original Editor</a>
@@ -88,7 +88,7 @@
   </div>
 
   <!-- JavaScript at the bottom for fast page loading -->
-  <?=fragment('cms/frontendCMSv2_js', $event)?>
+  <?=fragment('js', $event)?>
   <!-- Page Controller -->
   <script type='text/javascript' src='/assets/CMS/assets/js/lib/controllers/events.js'></script>
   <script>
