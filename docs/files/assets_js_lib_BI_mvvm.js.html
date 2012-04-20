@@ -153,11 +153,14 @@
 	  			&#x2F;&#x2F;if the object already has the property, we&#x27;ll run it through the array template extend
 	  			&#x2F;&#x2F;this is the only portion of this loop that is not identical to the behavior of $.extend(true,[...])
 	  			if (obj[property]) {
-	  				obj[property] = arrayItemTemplateExtend(obj[property],blank[property]);
-	  				continue;
+	  				if (obj[property] instanceof Array) {
+		  				obj[property] = arrayItemTemplateExtend(obj[property],blank[property]);
+		  				&#x2F;&#x2F;next property
+						continue;
+					}
 	  			}
 	  			&#x2F;&#x2F;if the new obj doesn&#x27;t have the property, add it
-	  			if (typeof obj[property] == &#x27;undefined&#x27;) {
+	  			if (typeof obj[property] === &#x27;undefined&#x27; || obj[property] === null) {
 	  				obj[property] = blank[property]
 	  			} else {
 	  				&#x2F;&#x2F;otherwise its already got the property, so lets keep extending
@@ -180,12 +183,10 @@
 
 		@return cleaned item
 	**&#x2F;
-	function arrayItemTemplateExtend(item,blank) {
-		if (item instanceof Array) {
-			$(item).each(function(i,val){
-				templateExtend(val,blank[0])
-			})
-		}
+	function arrayItemTemplateExtend(item,blank) {		
+		$(item).each(function(i,val){
+			templateExtend(val,blank[0])
+		})
 		return item;
 	}
 
@@ -202,6 +203,7 @@
 		@return {object} cleaned object
 	**&#x2F;
 	function recursiveRemoveKoMap(d) {
+		if (!d) {return d}
 		if (typeof d == &#x27;object&#x27; &amp;&amp; d.__ko_mapping__) {
 			delete d.__ko_mapping__;
 		}

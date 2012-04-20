@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;location&#x2F;cmsPath.js - YUIDoc</title>
+    <title>assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;page-data.js - YUIDoc</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -90,32 +90,32 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;location&#x2F;cmsPath.js</h1>
+                        <h1 class="file-heading">File: assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;page-data.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;**
-	Used to store and retrieve data about the server path to the library
-	(for including scripts, css, relative links, etc)
+	Used to store and retrieve data
+	about the current page (called often via php)
 
-	@module cmsPath
+	@module pageData
 **&#x2F;
 
 &#x2F;**
-	@class cmsPath
-	@namespace BI.location
+	@class pageData
+	@namespace BI 
+	@static
 **&#x2F;
 (function($,ko,BI,undefined) {
 	var exposed;
 
-	var paths = {
-		rootAssets: &#x27;&#x2F;assets&#x2F;&#x27;
-	};
+	&#x2F;&#x2F;hash to store key:val pairs
+	var pageData = {};
 
-	BI.namespace(&#x27;location&#x27;)
+	BI.namespace(&#x27;pageData&#x27;)
 
 	&#x2F;** 
-		Sets a path
+		Sets some data
 		
 		@method set
 		@param {String} key
@@ -125,29 +125,43 @@
 	**&#x2F;
 
 	function set(key,value) {
-	  paths[key] = value;
+	  pageData[key] = value;
 	}
 
 	&#x2F;** 
-		Gets a path
+		Gets some data
 		
 		@method get
 		@param {String} key
 		@param {String} value
 
-		@return {void}
+		@return {Any}
 	**&#x2F;
 
 	function get(key) {
-	  return paths[key];
+	  return pageData[key];
 	}
+
+	&#x2F;** 
+		Gets all
+		
+		@method getAll
+
+		@return {Objet}
+	**&#x2F;
+
+	function getAll(key) {
+	  return pageData;
+	}
+
 
 	exposed = {
 		set: set,
-		get: get
+		get: get,
+		getAll: getAll
 	}
 
-	BI.location.cmsPath = exposed;
+	BI.pageData = exposed;
 }(jQuery, ko, BI))
     </pre>
 </div>

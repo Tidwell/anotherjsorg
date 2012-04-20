@@ -7,8 +7,8 @@
         "logo": "http://yuilibrary.com/img/yui-logo.png"
     },
     "files": {
-        "assets/js/lib/BI/location/cmsPath.js": {
-            "name": "assets/js/lib/BI/location/cmsPath.js",
+        "assets/js/lib/BI/location/cms-path.js": {
+            "name": "assets/js/lib/BI/location/cms-path.js",
             "modules": {
                 "cmsPath": 1
             },
@@ -57,8 +57,8 @@
                 "BI": 1
             }
         },
-        "assets/js/lib/BI/pagedata.js": {
-            "name": "assets/js/lib/BI/pagedata.js",
+        "assets/js/lib/BI/page-data.js": {
+            "name": "assets/js/lib/BI/page-data.js",
             "modules": {
                 "pageData": 1
             },
@@ -83,7 +83,7 @@
                 "BI.location": 1
             },
             "tag": "module",
-            "file": "assets/js/lib/BI/location/cmsPath.js",
+            "file": "assets/js/lib/BI/location/cms-path.js",
             "line": 8,
             "description": "Used to store and retrieve data about the server path to the library\n(for including scripts, css, relative links, etc)"
         },
@@ -149,7 +149,7 @@
                 "BI": 1
             },
             "tag": "module",
-            "file": "assets/js/lib/BI/pagedata.js",
+            "file": "assets/js/lib/BI/page-data.js",
             "line": 8,
             "description": "Used to store and retrieve data\nabout the current page (called often via php)"
         }
@@ -165,7 +165,7 @@
             "extension_for": [],
             "module": "cmsPath",
             "namespace": "BI.location",
-            "file": "assets/js/lib/BI/location/cmsPath.js",
+            "file": "assets/js/lib/BI/location/cms-path.js",
             "line": 8
         },
         "BI.location.querystring": {
@@ -220,14 +220,14 @@
             "extension_for": [],
             "module": "pageData",
             "namespace": "BI",
-            "file": "assets/js/lib/BI/pagedata.js",
+            "file": "assets/js/lib/BI/page-data.js",
             "line": 8,
             "static": 1
         }
     },
     "classitems": [
         {
-            "file": "assets/js/lib/BI/location/cmsPath.js",
+            "file": "assets/js/lib/BI/location/cms-path.js",
             "line": 21,
             "description": "Sets a path",
             "itemtype": "method",
@@ -253,7 +253,7 @@
             "namespace": "BI.location"
         },
         {
-            "file": "assets/js/lib/BI/location/cmsPath.js",
+            "file": "assets/js/lib/BI/location/cms-path.js",
             "line": 35,
             "description": "Gets a path",
             "itemtype": "method",
@@ -381,7 +381,7 @@
         },
         {
             "file": "assets/js/lib/BI/mvvm.js",
-            "line": 75,
+            "line": 78,
             "description": "Takes an arbitrary variable and a blank \"template\" object\nif the item is an array, will call extend for each item in the array\nthus ensuring that each item in the array has the same fields as the blank",
             "itemtype": "method",
             "name": "arrayItemTemplateExtend",
@@ -408,7 +408,7 @@
         },
         {
             "file": "assets/js/lib/BI/mvvm.js",
-            "line": 98,
+            "line": 99,
             "description": "Recursively removes the __ko_mapping__ property from objects, also recurses over values\ninside of arrays and removes properties from any objects",
             "itemtype": "method",
             "name": "recursiveRemoveKoMap",
@@ -431,7 +431,7 @@
         },
         {
             "file": "assets/js/lib/BI/mvvm.js",
-            "line": 129,
+            "line": 131,
             "description": "An unwrapper for knockout viewmodels to get plain javascript objects",
             "itemtype": "method",
             "name": "unwrap",
@@ -452,7 +452,7 @@
         },
         {
             "file": "assets/js/lib/BI/mvvm.js",
-            "line": 146,
+            "line": 148,
             "description": "A wrapper for ko.mapping.fromJS",
             "itemtype": "method",
             "name": "wrap",
@@ -473,7 +473,7 @@
         },
         {
             "file": "assets/js/lib/BI/mvvm.js",
-            "line": 158,
+            "line": 160,
             "description": "A wrapper for ko.applyBindings",
             "itemtype": "method",
             "name": "applyBindings",
@@ -493,8 +493,8 @@
             "namespace": "BI"
         },
         {
-            "file": "assets/js/lib/BI/pagedata.js",
-            "line": 20,
+            "file": "assets/js/lib/BI/page-data.js",
+            "line": 21,
             "description": "Sets some data",
             "itemtype": "method",
             "name": "set",
@@ -519,8 +519,8 @@
             "namespace": "BI"
         },
         {
-            "file": "assets/js/lib/BI/pagedata.js",
-            "line": 34,
+            "file": "assets/js/lib/BI/page-data.js",
+            "line": 35,
             "description": "Gets some data",
             "itemtype": "method",
             "name": "get",
@@ -538,7 +538,21 @@
             ],
             "return": {
                 "description": "",
-                "type": "Void"
+                "type": "Any"
+            },
+            "class": "BI.pageData",
+            "module": "pageData",
+            "namespace": "BI"
+        },
+        {
+            "file": "assets/js/lib/BI/page-data.js",
+            "line": 49,
+            "description": "Gets all",
+            "itemtype": "method",
+            "name": "getAll",
+            "return": {
+                "description": "",
+                "type": "Objet"
             },
             "class": "BI.pageData",
             "module": "pageData",

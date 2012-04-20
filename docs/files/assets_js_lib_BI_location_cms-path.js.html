@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;pagedata.js - YUIDoc</title>
+    <title>assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;location&#x2F;cms-path.js - YUIDoc</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -90,31 +90,32 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;pagedata.js</h1>
+                        <h1 class="file-heading">File: assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;location&#x2F;cms-path.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;**
-	Used to store and retrieve data
-	about the current page (called often via php)
+	Used to store and retrieve data about the server path to the library
+	(for including scripts, css, relative links, etc)
 
-	@module pageData
+	@module cmsPath
 **&#x2F;
 
 &#x2F;**
-	@class pageData
-	@namespace BI
-	@static
+	@class cmsPath
+	@namespace BI.location
 **&#x2F;
 (function($,ko,BI,undefined) {
 	var exposed;
 
-	var pageData;
+	var paths = {
+		rootAssets: &#x27;&#x2F;assets&#x2F;&#x27;
+	};
 
 	BI.namespace(&#x27;location&#x27;)
 
 	&#x2F;** 
-		Sets some data
+		Sets a path
 		
 		@method set
 		@param {String} key
@@ -124,11 +125,11 @@
 	**&#x2F;
 
 	function set(key,value) {
-	  pageData[key] = value;
+	  paths[key] = value;
 	}
 
 	&#x2F;** 
-		Gets some data
+		Gets a path
 		
 		@method get
 		@param {String} key
@@ -138,7 +139,7 @@
 	**&#x2F;
 
 	function get(key) {
-	  return pageData[key];
+	  return paths[key];
 	}
 
 	exposed = {
@@ -146,7 +147,7 @@
 		get: get
 	}
 
-	BI.location.pageData = exposed;
+	BI.location.cmsPath = exposed;
 }(jQuery, ko, BI))
     </pre>
 </div>
