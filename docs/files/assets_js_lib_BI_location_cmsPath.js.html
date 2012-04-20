@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>base</title>
+    <title>assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;location&#x2F;cmsPath.js - YUIDoc</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -14,11 +14,11 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="..&#x2F;assets/css/logo.png" title=""></h1>
+                <h1><img src="http:&#x2F;&#x2F;yuilibrary.com&#x2F;img&#x2F;yui-logo.png" title="YUIDoc"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: </em>
+            <em>API Docs for: 0.2.39</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -42,6 +42,8 @@
             
                 <li><a href="..&#x2F;classes/BI.html">BI</a></li>
             
+                <li><a href="..&#x2F;classes/BI.location.cmsPath.html">BI.location.cmsPath</a></li>
+            
                 <li><a href="..&#x2F;classes/BI.location.querystring.html">BI.location.querystring</a></li>
             
                 <li><a href="..&#x2F;classes/BI.mvvm.html">BI.mvvm</a></li>
@@ -50,11 +52,9 @@
 
             <ul id="api-modules" class="apis modules">
             
-                <li><a href="..&#x2F;modules/base.html">base</a></li>
+                <li><a href="..&#x2F;modules/cmsPath.html">cmsPath</a></li>
             
                 <li><a href="..&#x2F;modules/mvvm.html">mvvm</a></li>
-            
-                <li><a href="..&#x2F;modules/querystring.html">querystring</a></li>
             
             </ul>
         </div>
@@ -86,46 +86,64 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>base Module</h1>
-<div class="box clearfix meta">
-    
+                        <h1 class="file-heading">File: assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;location&#x2F;cmsPath.js</h1>
 
-    
-        <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;assets_js_lib_BI_base.js.html#l8"><code>assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;base.js:8</code></a>
-        </div>
-    
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;**
+	Used to store and retrieve data about the server path to the library
+	(for including scripts, css, relative links, etc)
 
-    
-</div>
+	@module cmsPath
+**&#x2F;
 
+&#x2F;**
+	@class cmsPath
+	@namespace BI.location
+**&#x2F;
+(function($,ko,BI,undefined) {
+	var exposed;
 
+	var paths = {};
 
-<div class="box intro">
-    <p>Define our global BI variable (and organization methods)
-This is a singleton defined using the Revealing Module Pattern</p>
-</div>
+	BI.namespace(&#x27;location&#x27;)
 
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
-        
-            <p>This module provides the following classes:</p>
+	&#x2F;** 
+		Sets a path
+		
+		@method set
+		@param {String} key
+		@param {String} value
 
-            <ul class="module-classes">
-            
-                <li class="module-class">
-                    <a href="..&#x2F;classes/BI.html">
-                        BI
-                    </a>
-                </li>
-            
-            </ul>
-        
-    </div>
+		@return {void}
+	**&#x2F;
 
-    <div class="yui3-u-1-2">
-        
-    </div>
+	function set(key,value) {
+	  paths[key] = value;
+	}
+
+	&#x2F;** 
+		Gets a path
+		
+		@method get
+		@param {String} key
+		@param {String} value
+
+		@return {void}
+	**&#x2F;
+
+	function get(key) {
+	  return paths[key];
+	}
+
+	exposed = {
+		set: set,
+		get: get
+	}
+
+	BI.location.cmsPath = exposed;
+}(jQuery, ko, BI))
+    </pre>
 </div>
 
                     </div>

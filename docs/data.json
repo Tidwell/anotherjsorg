@@ -1,6 +1,25 @@
 {
-    "project": {},
+    "project": {
+        "name": "YUIDoc",
+        "description": "YUIDoc documentation tool written in Javascript",
+        "version": "0.2.39",
+        "url": "http://yuilibrary.com/projects/yuidoc",
+        "logo": "http://yuilibrary.com/img/yui-logo.png"
+    },
     "files": {
+        "assets/js/lib/BI/location/cmsPath.js": {
+            "name": "assets/js/lib/BI/location/cmsPath.js",
+            "modules": {
+                "cmsPath": 1
+            },
+            "classes": {
+                "BI.location.cmsPath": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "BI.location": 1
+            }
+        },
         "assets/js/lib/BI/location/querystring.js": {
             "name": "assets/js/lib/BI/location/querystring.js",
             "modules": {
@@ -40,6 +59,21 @@
         }
     },
     "modules": {
+        "cmsPath": {
+            "name": "cmsPath",
+            "submodules": {},
+            "classes": {
+                "BI.location.cmsPath": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "BI.location": 1
+            },
+            "tag": "module",
+            "file": "assets/js/lib/BI/location/cmsPath.js",
+            "line": 8,
+            "description": "Used to store and retrieve data about the server path to the library\n(for including scripts, css, relative links, etc)"
+        },
         "querystring": {
             "name": "querystring",
             "submodules": {},
@@ -93,6 +127,19 @@
         }
     },
     "classes": {
+        "BI.location.cmsPath": {
+            "name": "BI.location.cmsPath",
+            "shortname": "BI.location.cmsPath",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "cmsPath",
+            "namespace": "BI.location",
+            "file": "assets/js/lib/BI/location/cmsPath.js",
+            "line": 8
+        },
         "BI.location.querystring": {
             "name": "BI.location.querystring",
             "shortname": "BI.location.querystring",
@@ -137,6 +184,58 @@
         }
     },
     "classitems": [
+        {
+            "file": "assets/js/lib/BI/location/cmsPath.js",
+            "line": 19,
+            "description": "Sets a path",
+            "itemtype": "method",
+            "name": "set",
+            "params": [
+                {
+                    "name": "key",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
+            "class": "BI.location.cmsPath",
+            "module": "cmsPath",
+            "namespace": "BI.location"
+        },
+        {
+            "file": "assets/js/lib/BI/location/cmsPath.js",
+            "line": 33,
+            "description": "Gets a path",
+            "itemtype": "method",
+            "name": "get",
+            "params": [
+                {
+                    "name": "key",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
+            "class": "BI.location.cmsPath",
+            "module": "cmsPath",
+            "namespace": "BI.location"
+        },
         {
             "file": "assets/js/lib/BI/location/querystring.js",
             "line": 14,
