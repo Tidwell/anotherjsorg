@@ -1,13 +1,13 @@
 #container {
-  width: 900px;
-  margin: 20px auto;
+  width: 100%;
+  margin: 20px 0;
 }
-h1 {
+#container h1.title {
   font-size: 26px;
   margin: 0 0 20px 0;
-  font-family: serif;
+
 }
-h2 {
+#container h2 {
   margin: 12px 0 12px 0;
   padding: 5px;
   background-color: #EBF1F6;
@@ -15,20 +15,20 @@ h2 {
   font-family: sans-serif;
   font-size: 20px;
 }
-p {
+#container p {
   font-size: 16px;
   margin: 3px 0;
   font-family: sans-serif; 
   clear: both;
   overflow: hidden;
 }
-p label {
+#container p label {
   float: left;
   width: 150px;
   padding: 5px;
   font-size: 12px;
 }
-p input {
+#container p input {
   float: left;
   width: 300px;
   border: 2px solid #BBB;
@@ -38,10 +38,14 @@ p input {
   padding: 5px;
 }
 
-p span {
+#container p span {
   display: block;
   float: left;
 }
-p span input {
+#container p span input {
   float: none;
+}
+#container button {
+  padding: 5px;
+  margin: 5px 0;
 }
