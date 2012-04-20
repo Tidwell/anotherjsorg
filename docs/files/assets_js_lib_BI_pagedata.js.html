@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;base.js - YUIDoc</title>
+    <title>assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;pagedata.js - YUIDoc</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -90,55 +90,64 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;base.js</h1>
+                        <h1 class="file-heading">File: assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;pagedata.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 &#x2F;**
-    Define our global BI variable (and organization methods)
-    This is a singleton defined using the Revealing Module Pattern 
-    
-    @module base
-    @requires jquery
+	Used to store and retrieve data
+	about the current page (called often via php)
+
+	@module pageData
 **&#x2F;
+
 &#x2F;**
-    Provides utility methods for adding features to the global object
-    @class BI
-    @static   
+	@class pageData
+	@namespace BI
+	@static
 **&#x2F;
+(function($,ko,BI,undefined) {
+	var exposed;
 
-(function($, window, undefined) {
-    var exposed;
+	var pageData;
 
-    &#x2F;**
-        Takes a dot-deliminated (string) and ensures it exists on global BI object
-        http:&#x2F;&#x2F;elegantcode.com&#x2F;2011&#x2F;01&#x2F;26&#x2F;basic-javascript-part-8-namespaces&#x2F;
+	BI.namespace(&#x27;location&#x27;)
 
-        @method namespace
-        @param {String} dot.deliminated.namespace 
-        @return {Object} parent of namespace (allows direct assignment)
-    **&#x2F;
-    function namespace(namespaceString) {
-	    var parts = namespaceString.split(&#x27;.&#x27;),
-	        parent = exposed,
-	        currentPart = &#x27;&#x27;;    
+	&#x2F;** 
+		Sets some data
+		
+		@method set
+		@param {String} key
+		@param {String} value
 
-	    for(var i = 0, length = parts.length; i &lt; length; i++) {
-	        currentPart = parts[i];
-	        parent[currentPart] = parent[currentPart] || {};
-	        parent = parent[currentPart];
-    	}
-	    return parent;
-	}   
+		@return {void}
+	**&#x2F;
 
-    
-    exposed = {
-        namespace: namespace
-    }
+	function set(key,value) {
+	  pageData[key] = value;
+	}
 
-    window.BI = window.BI || exposed;
+	&#x2F;** 
+		Gets some data
+		
+		@method get
+		@param {String} key
+		@param {String} value
 
-})($, window);
+		@return {void}
+	**&#x2F;
+
+	function get(key) {
+	  return pageData[key];
+	}
+
+	exposed = {
+		set: set,
+		get: get
+	}
+
+	BI.location.pageData = exposed;
+}(jQuery, ko, BI))
     </pre>
 </div>
 

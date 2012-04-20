@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>BI - YUIDoc</title>
+    <title>BI.pageData - YUIDoc</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -90,7 +90,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>BI Class</h1>
+                        <h1>BI.pageData Class</h1>
 <div class="box meta">
     
 
@@ -98,13 +98,13 @@
 
     
         <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;assets_js_lib_BI_base.js.html#l8"><code>assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;base.js:8</code></a>
+            Defined in: <a href="..&#x2F;files&#x2F;assets_js_lib_BI_pagedata.js.html#l8"><code>assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;pagedata.js:8</code></a>
         </div>
     
 
     
         
-            Module: <a href="../modules/base.html">base</a>
+            Module: <a href="../modules/pageData.html">pageData</a>
         
     
 
@@ -114,7 +114,7 @@
 
 
 <div class="box intro">
-    <p>Provides utility methods for adding features to the global object</p>
+    
 </div>
 
 
@@ -142,7 +142,13 @@
                     <ul class="index-list methods">
                         
                             <li class="index-item method">
-                                <a href="#method_namespace">namespace</a>
+                                <a href="#method_get">get</a>
+
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_set">set</a>
 
                                 
                             </li>
@@ -163,8 +169,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_namespace" class="method item">
-    <h3 class="name"><code>namespace</code></h3>
+                    <div id="method_get" class="method item">
+    <h3 class="name"><code>get</code></h3>
 
     
         <div class="args">
@@ -172,7 +178,13 @@
             
                 <li class="arg">
                     
-                        <code>dot.deliminated.namespace</code>
+                        <code>key</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>value</code>
                     
                 </li>
             
@@ -182,7 +194,7 @@
 
     
         <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>
+            <span class="type">Void</span>
         </span>
     
 
@@ -207,7 +219,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;assets_js_lib_BI_base.js.html#l17"><code>assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;base.js:17</code></a>
+        <a href="..&#x2F;files&#x2F;assets_js_lib_BI_pagedata.js.html#l34"><code>assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;pagedata.js:34</code></a>
         
         </p>
 
@@ -218,8 +230,7 @@
     </div>
 
     <div class="description">
-        <p>Takes a dot-deliminated (string) and ensures it exists on global BI object
-http://elegantcode.com/2011/01/26/basic-javascript-part-8-namespaces/</p>
+        <p>Gets some data</p>
     </div>
 
     
@@ -230,7 +241,22 @@ http://elegantcode.com/2011/01/26/basic-javascript-part-8-namespaces/</p>
             
                 <li class="param">
                     
-                        <code class="param-name">dot.deliminated.namespace</code>
+                        <code class="param-name">key</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
@@ -254,9 +280,130 @@ http://elegantcode.com/2011/01/26/basic-javascript-part-8-namespaces/</p>
             <div class="returns-description">
                 
                     
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>:
+                        <span class="type">Void</span>:
                     
-                    parent of namespace (allows direct assignment)
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
+                    <div id="method_set" class="method item">
+    <h3 class="name"><code>set</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>key</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>value</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Void</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="..&#x2F;files&#x2F;assets_js_lib_BI_pagedata.js.html#l20"><code>assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;pagedata.js:20</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Sets some data</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">key</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">value</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Void</span>:
+                    
                 
             </div>
         </div>

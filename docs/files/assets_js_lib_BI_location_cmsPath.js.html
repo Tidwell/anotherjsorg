@@ -48,6 +48,8 @@
             
                 <li><a href="..&#x2F;classes/BI.mvvm.html">BI.mvvm</a></li>
             
+                <li><a href="..&#x2F;classes/BI.pageData.html">BI.pageData</a></li>
+            
             </ul>
 
             <ul id="api-modules" class="apis modules">
@@ -55,6 +57,8 @@
                 <li><a href="..&#x2F;modules/cmsPath.html">cmsPath</a></li>
             
                 <li><a href="..&#x2F;modules/mvvm.html">mvvm</a></li>
+            
+                <li><a href="..&#x2F;modules/pageData.html">pageData</a></li>
             
             </ul>
         </div>
@@ -104,7 +108,9 @@
 (function($,ko,BI,undefined) {
 	var exposed;
 
-	var paths = {};
+	var paths = {
+		rootAssets: &#x27;&#x2F;assets&#x2F;&#x27;
+	};
 
 	BI.namespace(&#x27;location&#x27;)
 

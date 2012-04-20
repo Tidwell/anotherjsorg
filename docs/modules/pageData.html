@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;base.js - YUIDoc</title>
+    <title>pageData - YUIDoc</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -90,56 +90,46 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;base.js</h1>
-
-<div class="file">
-    <pre class="code prettyprint linenums">
-&#x2F;**
-    Define our global BI variable (and organization methods)
-    This is a singleton defined using the Revealing Module Pattern 
+                        <h1>pageData Module</h1>
+<div class="box clearfix meta">
     
-    @module base
-    @requires jquery
-**&#x2F;
-&#x2F;**
-    Provides utility methods for adding features to the global object
-    @class BI
-    @static   
-**&#x2F;
-
-(function($, window, undefined) {
-    var exposed;
-
-    &#x2F;**
-        Takes a dot-deliminated (string) and ensures it exists on global BI object
-        http:&#x2F;&#x2F;elegantcode.com&#x2F;2011&#x2F;01&#x2F;26&#x2F;basic-javascript-part-8-namespaces&#x2F;
-
-        @method namespace
-        @param {String} dot.deliminated.namespace 
-        @return {Object} parent of namespace (allows direct assignment)
-    **&#x2F;
-    function namespace(namespaceString) {
-	    var parts = namespaceString.split(&#x27;.&#x27;),
-	        parent = exposed,
-	        currentPart = &#x27;&#x27;;    
-
-	    for(var i = 0, length = parts.length; i &lt; length; i++) {
-	        currentPart = parts[i];
-	        parent[currentPart] = parent[currentPart] || {};
-	        parent = parent[currentPart];
-    	}
-	    return parent;
-	}   
 
     
-    exposed = {
-        namespace: namespace
-    }
+        <div class="foundat">
+            Defined in: <a href="..&#x2F;files&#x2F;assets_js_lib_BI_pagedata.js.html#l8"><code>assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;pagedata.js:8</code></a>
+        </div>
+    
 
-    window.BI = window.BI || exposed;
+    
+</div>
 
-})($, window);
-    </pre>
+
+
+<div class="box intro">
+    <p>Used to store and retrieve data
+about the current page (called often via php)</p>
+</div>
+
+<div class="yui3-g">
+    <div class="yui3-u-1-2">
+        
+            <p>This module provides the following classes:</p>
+
+            <ul class="module-classes">
+            
+                <li class="module-class">
+                    <a href="..&#x2F;classes/BI.pageData.html">
+                        BI.pageData
+                    </a>
+                </li>
+            
+            </ul>
+        
+    </div>
+
+    <div class="yui3-u-1-2">
+        
+    </div>
 </div>
 
                     </div>

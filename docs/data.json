@@ -56,6 +56,19 @@
             "namespaces": {
                 "BI": 1
             }
+        },
+        "assets/js/lib/BI/pagedata.js": {
+            "name": "assets/js/lib/BI/pagedata.js",
+            "modules": {
+                "pageData": 1
+            },
+            "classes": {
+                "BI.pageData": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "BI": 1
+            }
         }
     },
     "modules": {
@@ -124,6 +137,21 @@
                 "knockout.mapping",
                 "base"
             ]
+        },
+        "pageData": {
+            "name": "pageData",
+            "submodules": {},
+            "classes": {
+                "BI.pageData": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "BI": 1
+            },
+            "tag": "module",
+            "file": "assets/js/lib/BI/pagedata.js",
+            "line": 8,
+            "description": "Used to store and retrieve data\nabout the current page (called often via php)"
         }
     },
     "classes": {
@@ -181,12 +209,26 @@
             "file": "assets/js/lib/BI/mvvm.js",
             "line": 9,
             "description": "Custom helper functions for doing basic tasks with data sets and knockout"
+        },
+        "BI.pageData": {
+            "name": "BI.pageData",
+            "shortname": "BI.pageData",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "pageData",
+            "namespace": "BI",
+            "file": "assets/js/lib/BI/pagedata.js",
+            "line": 8,
+            "static": 1
         }
     },
     "classitems": [
         {
             "file": "assets/js/lib/BI/location/cmsPath.js",
-            "line": 19,
+            "line": 21,
             "description": "Sets a path",
             "itemtype": "method",
             "name": "set",
@@ -212,7 +254,7 @@
         },
         {
             "file": "assets/js/lib/BI/location/cmsPath.js",
-            "line": 33,
+            "line": 35,
             "description": "Gets a path",
             "itemtype": "method",
             "name": "get",
@@ -448,6 +490,58 @@
             },
             "class": "BI.mvvm",
             "module": "mvvm",
+            "namespace": "BI"
+        },
+        {
+            "file": "assets/js/lib/BI/pagedata.js",
+            "line": 20,
+            "description": "Sets some data",
+            "itemtype": "method",
+            "name": "set",
+            "params": [
+                {
+                    "name": "key",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
+            "class": "BI.pageData",
+            "module": "pageData",
+            "namespace": "BI"
+        },
+        {
+            "file": "assets/js/lib/BI/pagedata.js",
+            "line": 34,
+            "description": "Gets some data",
+            "itemtype": "method",
+            "name": "get",
+            "params": [
+                {
+                    "name": "key",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Void"
+            },
+            "class": "BI.pageData",
+            "module": "pageData",
             "namespace": "BI"
         }
     ]
