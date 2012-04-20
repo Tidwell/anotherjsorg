@@ -12,7 +12,9 @@
 (function($,ko,BI,undefined) {
 	var exposed;
 
-	var paths = {};
+	var paths = {
+		rootAssets: '/assets/'
+	};
 
 	BI.namespace('location')
 

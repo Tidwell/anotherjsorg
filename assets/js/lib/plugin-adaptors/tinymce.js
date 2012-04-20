@@ -1,5 +1,5 @@
 //Allows us to use tinymce with knockout data bindings (an adapter)
-(function($,ko,undefined) {
+(function($,ko,BI,undefined) {
 	var regular_config = {
 		mode 			: "specific_textareas",
 		editor_selector	: "tinymce",
@@ -56,7 +56,7 @@
 		// Add a custom button
 		ed.addButton("pagebreak", {
 			title   : "Add Pagebreak",
-			image   : "/assets/img/pagebreak.gif",
+			image   : BI.cmsPath.get('rootAssets')+"/img/pagebreak.gif",
 			onclick : function() {
 				ed.focus();
 				if (ed.selection.getNode().nodeName == "STRONG") {
@@ -107,4 +107,4 @@
 		}
 	}
 
-}(jQuery, ko))
+}(jQuery, ko, BI))
