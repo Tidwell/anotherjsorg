@@ -7,7 +7,7 @@
 
 /**
 	@class pageData
-	@namespace BI
+	@namespace BI 
 	@static
 **/
 (function($,ko,BI,undefined) {
