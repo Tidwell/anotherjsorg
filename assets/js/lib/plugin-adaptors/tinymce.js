@@ -56,7 +56,7 @@
 		// Add a custom button
 		ed.addButton("pagebreak", {
 			title   : "Add Pagebreak",
-			image   : BI.cmsPath.get('rootAssets')+"/img/pagebreak.gif",
+			image   : BI.location.cmsPath.get('rootAssets')+"/img/pagebreak.gif",
 			onclick : function() {
 				ed.focus();
 				if (ed.selection.getNode().nodeName == "STRONG") {
