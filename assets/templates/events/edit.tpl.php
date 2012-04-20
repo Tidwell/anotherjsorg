@@ -21,13 +21,13 @@
       <p><label>Event Name</label><input type="text"  data-bind="value: name" /></p>
       <p><label>Url</label><span>businessinsider.com/event/<input type="text" data-bind="value: url" class="url"/></span></p>
       <p><label>Event Tagline</label><input type="text" data-bind="value: tagline" /></p>
-      <p><label>Tagline Color</label><input type="text" data-bind="colorpicker: taglineColor,value: tagline_color" /></p>
+      <p><label>Tagline Color</label><input type="text" data-bind="colorpicker: tagline_color,value: tagline_color" /></p>
       <p><label>Register Button Color</label><input type="text" data-bind="colorpicker: register_button_color, value: register_button_color" /></p>
       <p><label>Show Register Buton</label><input type="checkbox" data-bind="checked: register_button" /></p>
       <p><label>Event Logo:</label><input type="text" data-bind="value: logo" /></p>
       <p><label>Eventbright / Ticketleap Url</label><input type="text" data-bind="value: register_url" class="url"/></p>
       <p><label>Landing Page Content</label><textarea rows="8" cols="80" data-bind="tinymce: landing_content"></textarea>
-      <p><label>Nav Color</label><input type="text" data-bind="colorpicker: nav_color_picker, value: nav_color_picker" /></p>
+      <p><label>Nav Color</label><input type="text" data-bind="colorpicker: nav_color, value: nav_color" /></p>
 
     <h2>Agenda</h2>
       <p><label>Agenda Page Content</label><textarea rows="8" cols="80" data-bind="tinymce: agenda_content"></textarea>
@@ -65,19 +65,24 @@
       <p><label>Press Content</label><textarea rows="8" cols="80" data-bind="tinymce: press_content"></textarea>
 
     <h2>Sponsor Right Rail</h2>
-      <div data-bind="sortable: rightRail">
+      <div data-bind="sortable: rails">
         <div class="sponsor">
           <p><label>Section Header:</label><input type="text" data-bind="value: header" /></p>
-          <div data-bind="sortable: {data: logos,connectClass: 'imgs'}">
+          <!--
+          <div data-bind="sortable: {data: images,connectClass: 'imgs'}">
             <div class="imgs">
-             <!--  <p><label>Sponsor Logo/Image:</label><input type="text" data-bind="value: img" /></p>
-              <p><label>Sponsor Url:</label><input type="text" data-bind="value: url" /></p> -->
+              <p><label>Sponsor Logo/Image:</label><input type="text" data-bind="value: img" /></p>
+              <p><label>Sponsor Url:</label><input type="text" data-bind="value: url" /></p>
               <button data-bind="click: $root.deleteLogo">-Delete Logo</button>
             </div>
           </div>
+          -->
+
           <!-- parent is used, because we are nested 2 levels deep inside the viewModel and the method is on the top level-->
+          <!--
           <button data-bind="click: $parent.addLogo">+Add Another Logo</button>
           <button data-bind="click: $parent.deleteSection">-Delete Section</button>
+          -->
           <hr />
         </div>
       </div>
@@ -88,11 +93,11 @@
   </div>
 
   <!-- JavaScript at the bottom for fast page loading -->
+  <!--include the js lib-->
   <?=CMSfragment('js', $event)?>
-  <!-- Page Controller -->
-  <script type='text/javascript' src='/assets/CMS/assets/js/lib/controllers/events.js'></script>
+  
   <script>
-    //set event data so we can use it in JS
+  //set event data so we can use it in JS
 	BI.pageData.set('event', (<?=$event_json?>));
 	BI.pageData.set('emptyEvent',{	
 		"id":"",
@@ -101,7 +106,9 @@
 		"tagline_color":"",
 		"register_button_color":"",
 		"register_button":true,
-		"logo":{"$id":""},
+		"logo":{
+      "id":""
+    },
 		"nav_color":"",
 		"url":"",
 		"register_url":"",
@@ -116,13 +123,13 @@
 			"bio":"",
 			"featured":true,
 			"photo":{
-				"$id":""
+				"id":""
 			}
 		}],
 		"rails":[{
 			"header":"",
 			"images":[{
-				"$id":""
+				"id":""
 			}],
 			"links":[""]
 		}],
@@ -137,6 +144,10 @@
 		"modify_user":null
 	})
   </script>
+
+  <!-- Page Controller -->
+  <script type='text/javascript' src='/assets/CMS/assets/js/lib/controllers/events.js'></script>
+
   <!-- End scripts -->
  </body>
 </html>

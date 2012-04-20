@@ -5,7 +5,8 @@
 */
 (function($,ko,BI,undefined) {
 	var dataModel, 
-        vm;
+        vm,
+        data;
 
 	// Define operations the UI can impliment.  At runtime, 'this' will be our
 	// active knockout View Model (so we are directly modifying the data that is
@@ -46,11 +47,14 @@
     
 	//store the blank data model so we can use it later in the operations.
 	dataModel = BI.pageData.get('emptyEvent');
-	
+	data = BI.pageData.get('event')
+
+    console.log('model',dataModel);
+    console.log('data',BI.pageData.get('event'))
 	//construct a view model with the data that we put into the page in the
     //template and the blank JSON version of the model
 	var viewModel = BI.mvvm.constructViewModel({
-		data: BI.pageData.get('event'),
+		data: data,
 		dataTemplate: dataModel
 	});
 
@@ -58,6 +62,7 @@
 	$.extend(true,viewModel,operations);
 
     vm = viewModel;
+    VM = viewModel;
 
     console.log(viewModel)
 	//initialize the DOM bindings
