@@ -70,8 +70,8 @@
           <p><label>Section Header:</label><input type="text" data-bind="value: header" /></p>
           <div data-bind="sortable: {data: logos,connectClass: 'imgs'}">
             <div class="imgs">
-              <p><label>Sponsor Logo/Image:</label><input type="text" data-bind="value: img" /></p>
-              <p><label>Sponsor Url:</label><input type="text" data-bind="value: url" /></p>
+             <!--  <p><label>Sponsor Logo/Image:</label><input type="text" data-bind="value: img" /></p>
+              <p><label>Sponsor Url:</label><input type="text" data-bind="value: url" /></p> -->
               <button data-bind="click: $root.deleteLogo">-Delete Logo</button>
             </div>
           </div>
