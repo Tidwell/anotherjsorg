@@ -1,9 +1,6 @@
 <?php if ($event->id): ?>
 	<?=Util_Cms::getEditLockWarning(null, null, 10 * MINUTES)?>
 <?php endif ?>
-<?
-	//echo json_encode($event->getJSON());
-?>
 <!doctype html>
 <head>
   <meta charset="utf-8">

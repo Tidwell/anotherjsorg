@@ -39,16 +39,30 @@
 		@param {String} key
 		@param {String} value
 
-		@return {void}
+		@return {Any}
 	**/
 
 	function get(key) {
 	  return pageData[key];
 	}
 
+	/** 
+		Gets all
+		
+		@method getAll
+
+		@return {Objet}
+	**/
+
+	function getAll(key) {
+	  return pageData;
+	}
+
+
 	exposed = {
 		set: set,
-		get: get
+		get: get,
+		getAll: getAll
 	}
 
 	BI.pageData = exposed;
