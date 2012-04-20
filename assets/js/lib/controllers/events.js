@@ -43,39 +43,33 @@
         }
     };
 
-    //Use BI.data to get the data for the page, and the blank template for the events
-    //We use Bi.location to grab the event id from the querystring
-    BI.data.get({
-		type: 'event',
-		id: BI.location.qs.get('id'), 
-		callback: function(data,blankObj) {
-			//store the blank data model so we can use it later in the operations.
-			dataModel = blankObj;
-			
-			//construct a view model with the data that was returned using BI.ko
-			var viewModel = BI.mvvm.constructViewModel({
-				data: data,
-				dataTemplate: blankObj
-			});
+    
+	//store the blank data model so we can use it later in the operations.
+	dataModel = blankObj;
+	
+	//construct a view model with the data that we put into the page in the
+    //template and the blank JSON version of the model
+	var viewModel = BI.mvvm.constructViewModel({
+		data: BI.pageData.get('event'),
+		dataTemplate: blankObj
+	});
 
-			//extend the viewModel with the operations we defined earlier
-			$.extend(true,viewModel,operations);
+	//extend the viewModel with the operations we defined earlier
+	$.extend(true,viewModel,operations);
 
-            vm = viewModel;
+    vm = viewModel;
 
-            console.log(BI)
-			//initialize the DOM bindings
-			BI.mvvm.applyBindings(viewModel);
+    console.log(BI)
+	//initialize the DOM bindings
+	BI.mvvm.applyBindings(viewModel);
 
-			//initialize the jquery validate plugin to validate the form
-			$("form").validate({
-				//wrap in an anonymous function so that save has the proper 'this'
-				//context as jquery validate will override 'this'
-				submitHandler: function() {
-					viewModel.save()
-				} 
-			});
-		}
+	//initialize the jquery validate plugin to validate the form
+	$("form").validate({
+		//wrap in an anonymous function so that save has the proper 'this'
+		//context as jquery validate will override 'this'
+		submitHandler: function() {
+			viewModel.save()
+		} 
 	});
  
 }(jQuery, ko, BI))
