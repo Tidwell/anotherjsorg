@@ -45,13 +45,13 @@
 
     
 	//store the blank data model so we can use it later in the operations.
-	dataModel = blankObj;
+	dataModel = BI.pageData.get('emptyEvent');
 	
 	//construct a view model with the data that we put into the page in the
     //template and the blank JSON version of the model
 	var viewModel = BI.mvvm.constructViewModel({
 		data: BI.pageData.get('event'),
-		dataTemplate: blankObj
+		dataTemplate: dataModel
 	});
 
 	//extend the viewModel with the operations we defined earlier

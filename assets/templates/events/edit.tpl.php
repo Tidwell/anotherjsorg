@@ -94,7 +94,7 @@
   <script>
     //set event data so we can use it in JS
 	BI.pageData.set('event', (<?=$event_json?>));
-	BI.pageData.set('emtpyEvent',{	
+	BI.pageData.set('emptyEvent',{	
 		"id":"",
 		"name":"",
 		"tagline":"",
