@@ -13,9 +13,10 @@
 (function($,ko,BI,undefined) {
 	var exposed;
 
-	var pageData;
+	//hash to store key:val pairs
+	var pageData = {};
 
-	BI.namespace('location')
+	BI.namespace('pageData')
 
 	/** 
 		Sets some data
