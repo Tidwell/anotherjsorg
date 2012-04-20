@@ -29,8 +29,6 @@ View at: http://localhost:8080/sample
 #Todo
 
 ###General
-1.  Get rid of BI.data - no reason to abstract ajax
-2.  Simplify examples
 3.  Figure out a way to document controllers & plugin adapters under separate catagories
 4.  Choose testing framework
 
@@ -38,7 +36,3 @@ View at: http://localhost:8080/sample
 1.  Images
 2.  Data-source 
 3.  Catagories
-
-
-###PHP Controller Conversions
-1. Events
