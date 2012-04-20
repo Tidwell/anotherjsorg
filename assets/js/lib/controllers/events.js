@@ -39,9 +39,8 @@
             vm.rails()[index].data.remove(this);
         },
         save: function() {
-            console.log(this);
-			//we delegate to the data module, passing the entire viewModel
-        	console.log(BI.mvvm.unwrap(this));
+        	//TODO make ajax to save
+            console.log(BI.mvvm.unwrap(this));
             return false;
         }
     };
@@ -51,6 +50,10 @@
 	dataModel = BI.pageData.get('emptyEvent');
 	data = BI.pageData.get('event')
 
+    if (console) {
+        console.log('model',dataModel);
+        console.log('data',BI.pageData.get('event'))
+    }
 	//construct a view model with the data that we put into the page in the
     //template and the blank JSON version of the model
 	var viewModel = BI.mvvm.constructViewModel({

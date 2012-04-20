@@ -57,11 +57,14 @@
 	  			//if the object already has the property, we'll run it through the array template extend
 	  			//this is the only portion of this loop that is not identical to the behavior of $.extend(true,[...])
 	  			if (obj[property]) {
-	  				obj[property] = arrayItemTemplateExtend(obj[property],blank[property]);
-	  				continue;
+	  				if (obj[property] instanceof Array) {
+		  				obj[property] = arrayItemTemplateExtend(obj[property],blank[property]);
+		  				//next property
+						continue;
+					}
 	  			}
 	  			//if the new obj doesn't have the property, add it
-	  			if (typeof obj[property] == 'undefined') {
+	  			if (typeof obj[property] === 'undefined' || obj[property] === null) {
 	  				obj[property] = blank[property]
 	  			} else {
 	  				//otherwise its already got the property, so lets keep extending
@@ -84,12 +87,10 @@
 
 		@return cleaned item
 	**/
-	function arrayItemTemplateExtend(item,blank) {
-		if (item instanceof Array) {
-			$(item).each(function(i,val){
-				templateExtend(val,blank[0])
-			})
-		}
+	function arrayItemTemplateExtend(item,blank) {		
+		$(item).each(function(i,val){
+			templateExtend(val,blank[0])
+		})
 		return item;
 	}
 
