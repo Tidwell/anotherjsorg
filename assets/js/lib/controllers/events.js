@@ -23,24 +23,26 @@
         },
         addSection: function() {
         	//one line, doing same as above
-        	this.rightRail.push(BI.mvvm.wrap($.extend(true,{},dataModel.rightRail[0])));
+        	this.rails.push(BI.mvvm.wrap($.extend(true,{},dataModel.rails[0])));
         },
         deleteSection: function(currentlogo, ev) {
-            vm.rightRail.remove(this);
+            vm.rails.remove(this);
         },
         
         addLogo: function(sectionData) {
         	//one line, doing same as above
-        	this.logos.push(BI.mvvm.wrap($.extend(true,{},dataModel.rightRail[0].logos[0])))
+        	this.data.push(BI.mvvm.wrap($.extend(true,{},dataModel.rails[0].data[0])))
         },
         deleteLogo: function(currentlogo, ev) {
             $ev = $(ev.srcElement)
             var index = $ev.parents('.sponsor').index();
-            vm.rightRail()[index].logos.remove(this);
+            vm.rails()[index].data.remove(this);
         },
         save: function() {
+            console.log(this);
 			//we delegate to the data module, passing the entire viewModel
-        	BI.data.save('event', this);
+        	console.log(BI.mvvm.unwrap(this));
+            return false;
         }
     };
 
@@ -49,8 +51,6 @@
 	dataModel = BI.pageData.get('emptyEvent');
 	data = BI.pageData.get('event')
 
-    console.log('model',dataModel);
-    console.log('data',BI.pageData.get('event'))
 	//construct a view model with the data that we put into the page in the
     //template and the blank JSON version of the model
 	var viewModel = BI.mvvm.constructViewModel({
@@ -64,17 +64,7 @@
     vm = viewModel;
     VM = viewModel;
 
-    console.log(viewModel)
 	//initialize the DOM bindings
 	BI.mvvm.applyBindings(viewModel);
-
-	//initialize the jquery validate plugin to validate the form
-	$("form").validate({
-		//wrap in an anonymous function so that save has the proper 'this'
-		//context as jquery validate will override 'this'
-		submitHandler: function() {
-			viewModel.save()
-		} 
-	});
  
 }(jQuery, ko, BI))

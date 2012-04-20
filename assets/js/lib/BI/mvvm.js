@@ -106,6 +106,7 @@
 		@return {object} cleaned object
 	**/
 	function recursiveRemoveKoMap(d) {
+		if (!d) {return d}
 		if (typeof d == 'object' && d.__ko_mapping__) {
 			delete d.__ko_mapping__;
 		}

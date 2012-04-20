@@ -24,7 +24,7 @@
       <p><label>Tagline Color</label><input type="text" data-bind="colorpicker: tagline_color,value: tagline_color" /></p>
       <p><label>Register Button Color</label><input type="text" data-bind="colorpicker: register_button_color, value: register_button_color" /></p>
       <p><label>Show Register Buton</label><input type="checkbox" data-bind="checked: register_button" /></p>
-      <p><label>Event Logo:</label><input type="text" data-bind="value: logo" /></p>
+      <p><label>Event Logo:</label><input type="text" data-bind="value: logo.$id" /></p>
       <p><label>Eventbright / Ticketleap Url</label><input type="text" data-bind="value: register_url" class="url"/></p>
       <p><label>Landing Page Content</label><textarea rows="8" cols="80" data-bind="tinymce: landing_content"></textarea>
       <p><label>Nav Color</label><input type="text" data-bind="colorpicker: nav_color, value: nav_color" /></p>
@@ -37,7 +37,7 @@
       <div data-bind="sortable: {data: speakers,connectClass: 'speakers'}">
         <div class="speaker">
 
-          <p><label>Photo:</label><input type="text" data-bind="value: photo" /></p>
+          <p><label>Photo:</label><input type="text" data-bind="value: photo.$id" /></p>
           <p><label>Name:</label><input type="text" data-bind="value: name" /></p>
           <p><label>Title:</label><input type="text" data-bind="value: title" /></p>
           <p><label>Comapny:</label><input type="text" data-bind="value: company" /></p>
@@ -68,27 +68,25 @@
       <div data-bind="sortable: rails">
         <div class="sponsor">
           <p><label>Section Header:</label><input type="text" data-bind="value: header" /></p>
-          <!--
-          <div data-bind="sortable: {data: images,connectClass: 'imgs'}">
+          
+          <div data-bind="sortable: {data: data,connectClass: 'imgs'}">
             <div class="imgs">
-              <p><label>Sponsor Logo/Image:</label><input type="text" data-bind="value: img" /></p>
-              <p><label>Sponsor Url:</label><input type="text" data-bind="value: url" /></p>
+              <p><label>Sponsor Logo/Image:</label><input type="text" data-bind="value: image.$id" /></p>
+              <p><label>Sponsor Url:</label><input type="text" data-bind="value: link" /></p>
               <button data-bind="click: $root.deleteLogo">-Delete Logo</button>
             </div>
           </div>
-          -->
+          
 
           <!-- parent is used, because we are nested 2 levels deep inside the viewModel and the method is on the top level-->
-          <!--
           <button data-bind="click: $parent.addLogo">+Add Another Logo</button>
           <button data-bind="click: $parent.deleteSection">-Delete Section</button>
-          -->
           <hr />
         </div>
       </div>
       <button data-bind="click: addSection">+Add Another Section</button>
 
-      <button type="submit">Save</button>
+      <button data-bind="click: save">Save</button>
     </form>
   </div>
 
@@ -128,10 +126,10 @@
 		}],
 		"rails":[{
 			"header":"",
-			"images":[{
-				"id":""
-			}],
-			"links":[""]
+			"data":[{
+				"image":{"id": ""},
+        "link": ""
+			}]
 		}],
 		"venue_content":"",
 		"tickets_content":"",
