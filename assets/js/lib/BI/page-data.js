@@ -50,5 +50,5 @@
 		get: get
 	}
 
-	BI.location.pageData = exposed;
+	BI.pageData = exposed;
 }(jQuery, ko, BI))
