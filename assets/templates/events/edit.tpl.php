@@ -93,6 +93,8 @@
   
   <script>
   //set event data so we can use it in JS
+  //we could also just make an ajax call in the controller to get this
+  //data from a different route
 	BI.pageData.set('event', (<?=$event_json?>));
 	BI.pageData.set('emptyEvent',{	
 		"id":"",
