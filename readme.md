@@ -1,17 +1,22 @@
 #Install
-Requires: node, npm
-`./ refers to repository root`
 
-Docs use YUIDoc (node version)  
+Requires: node, npm
+    `./ refers to repository root`
+
+
+#Docs
+
+Uses YUIDoc (node version)  
+
 To Install:  
 	`npm -g install yuidocjs`  
-	http://davglass.github.com/yuidocjs/
+    http://davglass.github.com/yuidocjs/
 
+To build:
+    `yuidoc -o ./docs ./assets/js/lib/BI/`
 
-To build docs, in ./ run  
-  `yuidoc -o ./docs ./assets/js/lib/BI/`
-
-Docs will need to be opened locally (open ./docs/index.html)
+Docs will need to be opened locally 
+    `open ./docs/index.html`
 
 
 #Integrate
@@ -23,16 +28,19 @@ Docs will need to be opened locally (open ./docs/index.html)
 ###Existing Model
 
 1.  Add getJSON method to model
-	`public function getJSON() 
-    {
-    	return json_encode(get_object_vars($this));
-    }`
+    
+    ```
+    public function getJSON() {
+        return json_encode(get_object_vars($this));
+    }
+    ```
 
 3. Controller still needs to be created in the TBI repo in
 	tbi/businessinsider/htdocs/cms/*
 
 	Sample:
-	`<?php
+	```
+    <?php
 		//different config than usual
 		require($_SERVER['TBI_CONFIG'] . 'frontendCMSv2.php');
 		$id = get_request_var('id');
@@ -56,8 +64,9 @@ Docs will need to be opened locally (open ./docs/index.html)
 		//call the new method we added
 		$event_json = $event->getJSON();
 		//everything gets protected in the view, so we have to pass the json in
+        //we could also make a completely new route to serve the data via ajax
 		CMShtmlview('events/edit', array('event' => $event,'event_json' => $event_json));
-	`
+	```
 
 4. Templates are created in
 	./assets/templates/*
