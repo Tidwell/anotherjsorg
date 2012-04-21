@@ -16,8 +16,8 @@
   font-size: 20px;
 }
 #container p {
-  font-size: 16px;
-  margin: 3px 0;
+  font-size: 14px;
+  margin: 5px 0;
   font-family: sans-serif; 
   clear: both;
   overflow: hidden;
@@ -27,17 +27,20 @@
   width: 150px;
   padding: 5px;
   font-size: 12px;
+  font-weight: bold;
 }
 #container p input {
   float: left;
-  width: 300px;
-  border: 2px solid #BBB;
+  border: 1px solid #BBB;
   background-color: white;
   text-transform: none;
   color: #222;
   padding: 5px;
+  width: 600px;
 }
-
+#container p input[type="checkbox"] {
+  height: 24px;
+}
 #container p span {
   display: block;
   float: left;
@@ -48,4 +51,17 @@
 #container button {
   padding: 5px;
   margin: 5px 0;
+}
+#container .colorpicker-input {
+  width: 50px;
+  color: white;
+  padding: .25em .5em;
+  line-height: 1.5em;
+}
+#container textarea {
+  width: 610px;
+  height: 400px;
+}
+#container .speaker textarea {
+  height: 200px;
 }

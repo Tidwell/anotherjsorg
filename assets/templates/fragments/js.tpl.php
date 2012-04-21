@@ -22,11 +22,14 @@
 <script type='text/javascript' src='/assets/CMS/assets/js/lib/BI/location/cms-path.js'></script>
 <script type='text/javascript' src='/assets/CMS/assets/js/lib/BI/page-data.js'></script>
 
+<!--Custom jQuery plugins-->
+<script type='text/javascript' src='/assets/CMS/assets/js/lib/plugins/image-selector.js'></script>
+
 <!-- Custom Knockout plugins -->
 <script type='text/javascript' src='/assets/CMS/assets/js/lib/plugin-adaptors/colorpicker.js'></script>
 <script type='text/javascript' src='/assets/CMS/assets/js/lib/plugin-adaptors/source.js'></script>
 <script type='text/javascript' src='/assets/CMS/assets/js/lib/plugin-adaptors/tinymce.js'></script>
-
+<script type='text/javascript' src='/assets/CMS/assets/js/lib/plugin-adaptors/image-selector.js'></script>
 
 <script>
 	//set the cms path so we can use it internally for assets included though js

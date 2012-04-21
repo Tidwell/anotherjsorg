@@ -65,7 +65,6 @@
 	$.extend(true,viewModel,operations);
 
     vm = viewModel;
-    VM = viewModel;
 
 	//initialize the DOM bindings
 	BI.mvvm.applyBindings(viewModel);
