@@ -4,6 +4,14 @@
 	margin: 0 5px 0 0;
 	display: inline-block;
 }
+#container .image-selector img {
+	max-height: 26px;
+	vertical-align: bottom;
+}
+#container .image-selector span {
+	display: inline;
+	float: none;
+}
 
 #image-browser {
 	display: none;

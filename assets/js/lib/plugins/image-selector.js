@@ -15,6 +15,8 @@
   		<button rel="upload">Upload</button>\
   		<button rel="select">Select</button>\
   		<button rel="clear">Clear</button>\
+  		<img src=""/>\
+  		<span></span>\
   	</div>';
 
   	var browserTemplate = '\
@@ -68,12 +70,12 @@
   	//makes an ajax request to get a list of images
   	//@arg {Number} {optional} initial offset, defaults to state.start (current start) or zero
   	//ajax returns 18 results
-  	var getImageList = function(start) {
+  	var getImageList = function(start,query) {
   		$browser.find('.results').html('Loading...');
   		$.ajax({
 			type: 'GET',
 			url: '/cms/ajax/imagesearch',
-			data: {q: '',start: start || state.start || 0},
+			data: {q: query||'',start: start || state.start || 0},
 			dataType: 'json',
 			success: function(json) {
 				//store internal state
@@ -126,7 +128,6 @@
 		$browser = $('#image-browser');
 		//bind the close event
 		$browser.on('click','.close',function() {
-			console.log('closing')
 			$browser.hide();
 			return false; //stopProp and preventDefault
 		})
@@ -144,6 +145,12 @@
 		$browser.on('click','.delete-image',function() {
 			deleteImage($(this).parent().attr('rel'));
 		})
+		$('#image-browser input').keypress(function(e) {
+			if (e.which == 13) {
+				return false;
+			}
+			getImageList(0,$('#image-browser input').val());
+		});
 	}
 
 	//plugin "constructor"
@@ -155,19 +162,22 @@
 	  //hide the element
 	  $el.hide();
 	  //replace with the selector widget
-	  $(buttonTemplate).insertAfter($el)
+	  var newButtons = $(buttonTemplate).insertAfter($el)
 	  	//bind click event
 	  	.on('click','button',trigger);
 
 	  	$browser.on('click','.result img',function() {
 			if (updateEl.data('imageselector') == $el.data('imageselector')) {
-				var val = $(this).attr('rel');
+				var val = $(this).parent().parent().attr('rel');
 				$browser.hide();
 				updateEl.val(val);
+				newButtons.find('img').attr('src',$(this).attr('src'))
+				newButtons.find('span').html($(this).parent().attr('title'))
 				options.onUpdate(val)
 			}	
 			return false; //stopProp and preventDefault
 		})
+		newButtons.find('span').html($el.val())
 	};
 
 	//ImageSelector.prototype.publicMethod = function() {};
