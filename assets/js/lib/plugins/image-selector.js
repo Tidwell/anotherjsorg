@@ -59,6 +59,21 @@
 		return html;
 	}
 
+	var uploadTemplate = function() {
+		var chartCatagories = [
+			'Housing'
+			'Stocks'
+			'Currencies'
+			'Oil'
+			'Employment'
+			'Tech'
+			'Advertising'
+			'Startups'
+			'Retail'
+			'Sports'
+		]
+	}
+
 	//shows the image browser and adjusts its offset from the top of the screen
 	//relative to the element that called it
   	var launchImageBrowser = function(opt) {
@@ -94,6 +109,7 @@
 		});
   	}
 
+  	//called when the delete image button is clicked
   	var deleteImage = function(id) {
 		if (confirm('Are you sure you want to permanently delete this image?')) {
 			$.post('/cms/ajax/delete_image', {id: id})
@@ -104,23 +120,7 @@
 		return false; //preventDefault and stopPropagation
 	}
 
-	//triggers the correct interface or action based on the rel of the button clicked
-	var trigger = function() {
-		var el = $(this);
-		//get the input element we need to modify the value for
-		updateEl = el.parent().prev();
-		switch(el.attr('rel')) {
-			case 'select':
-				launchImageBrowser({
-					//pass in the offset of the element so we can reposition the imagebrowser
-					top: el.offset().top+el.height()+9
-				});
-				break;
-		}
-		return false; //preventDefault and stopProp
-	}
-
-	//called on page load
+	//called on page load, sets up the single instance of the image browser
 	var init = function() {
 		//adds the template to the page
 		$('body').append(browserTemplate);
@@ -163,21 +163,48 @@
 	  $el.hide();
 	  //replace with the selector widget
 	  var newButtons = $(buttonTemplate).insertAfter($el)
-	  	//bind click event
-	  	.on('click','button',trigger);
+	  
 
-	  	$browser.on('click','.result img',function() {
-			if (updateEl.data('imageselector') == $el.data('imageselector')) {
-				var val = $(this).parent().parent().attr('rel');
-				$browser.hide();
-				updateEl.val(val);
-				newButtons.find('img').attr('src',$(this).attr('src'))
-				newButtons.find('span').html($(this).parent().attr('title'))
-				options.onUpdate(val)
-			}	
-			return false; //stopProp and preventDefault
-		})
-		newButtons.find('span').html($el.val())
+	  //bind select click event
+	  newButtons.on('click','button[rel="select"]',function() {
+	  	updateEl = $(this).parent().prev();
+	  	launchImageBrowser({
+			//pass in the offset of the element so we can reposition the imagebrowser
+			top: $(this).offset().top+$(this).height()+9
+		});
+		return false; //preventDefault and stopProp
+	  });
+
+	  //bind clear click event
+	  newButtons.on('click','button[rel="clear"]',function() {
+	  	updateEl = $(this).parent().prev();
+	  	updateEl.val('');
+		//set the image preview
+		newButtons.find('img').attr('src','')
+		//set the title
+		newButtons.find('span').html('')
+	  	options.onUpdate('');
+		return false; //preventDefault and stopProp
+	  });	  
+
+	  //bind image-select click event (todo abstract so we aren't binding multiple times)
+	  $browser.on('click','.result img',function() {
+	  	//make sure we are capturing an update for this selector and not another on the page
+		if (updateEl.data('imageselector') == $el.data('imageselector')) {
+			//grab the value from the element
+			var val = $(this).parent().parent().attr('rel');
+			$browser.hide();
+			updateEl.val(val);
+			//set the image preview
+			newButtons.find('img').attr('src',$(this).attr('src'))
+			//set the title
+			newButtons.find('span').html($(this).parent().attr('title'))
+			//call the users onUpdate method
+			options.onUpdate(val)
+		}	
+		return false; //stopProp and preventDefault
+	  })
+	  newButtons.find('span').html($el.val())
 	};
 
 	//ImageSelector.prototype.publicMethod = function() {};
