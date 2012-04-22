@@ -61,15 +61,15 @@
 
 	var uploadTemplate = function() {
 		var chartCatagories = [
-			'Housing'
-			'Stocks'
-			'Currencies'
-			'Oil'
-			'Employment'
-			'Tech'
-			'Advertising'
-			'Startups'
-			'Retail'
+			'Housing',
+			'Stocks',
+			'Currencies',
+			'Oil',
+			'Employment',
+			'Tech',
+			'Advertising',
+			'Startups',
+			'Retail',
 			'Sports'
 		]
 	}

@@ -114,7 +114,7 @@ BI.pageData.set('emptyEvent',{
 		"bio":"",
 		"featured":true,
 		"photo":{
-			"id":""
+			"$id":""
 		}
 	}],
 	"rails":[{
