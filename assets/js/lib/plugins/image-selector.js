@@ -89,7 +89,7 @@
   		$browser.find('.results').html('Loading...');
   		$.ajax({
 			type: 'GET',
-			url: '/cms/ajax/imagesearch',
+			url:  '/cms/ajax/imagesearch',
 			data: {q: query||'',start: start || state.start || 0},
 			dataType: 'json',
 			success: function(json) {
@@ -180,7 +180,7 @@
 	  	updateEl = $(this).parent().prev();
 	  	updateEl.val('');
 		//set the image preview
-		newButtons.find('img').attr('src','')
+		newButtons.find('img').replaceWith('<img />');
 		//set the title
 		newButtons.find('span').html('')
 	  	options.onUpdate('');
