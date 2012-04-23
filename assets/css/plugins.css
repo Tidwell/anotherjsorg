@@ -13,7 +13,7 @@
 	float: none;
 }
 
-#image-browser {
+#image-browser, #image-uploader {
 	display: none;
 	width: 800px;
 	height: 500px;
@@ -27,10 +27,11 @@
 	box-shadow: 3px 3px 4px #000;
 	z-index: 200;
 }
-#image-browser p {
-	margin: 0 0 20px;
-	padding: 10px 20px;
+#image-browser p.hdr, #image-uploader p.hdr {
+	margin: 0 0 10px;
+	padding: 10px 15px;
 	text-align: left;
+	line-height: 28px;
 }
 #image-browser .results {
 	overflow: hidden;
@@ -51,14 +52,14 @@
 	font-size: 12px;
 	cursor: pointer;
 }
-#image-browser input {
+#image-browser input, #image-uploader input {
   width: 300px;
   border: 1px solid #BBB;
   color: #222;
   padding: 5px;
 }
 
-#image-browser .close {
+#image-browser .close, #image-uploader .close {
 	position: absolute;
 	top: 5px;
 	right: 5px;
@@ -75,3 +76,61 @@
 #image-browser .pagination a {
 	cursor: pointer;
 } 
+
+#image-uploader form {
+	width: 600px;
+	overflow: hidden;
+}
+#image-uploader form p,#image-uploader form div {
+	overflow: hidden;
+	margin: 5px 15px;
+	clear: both;
+}
+
+#image-uploader form label {
+	text-align: left;
+	width: 100px;
+	display: block;
+	line-height: 27px;
+	float: left;
+}
+#image-uploader form input {
+	display: block;
+	float: left;
+	width: 400px;
+}
+#image-uploader form input[type="checkbox"] {
+	width: 27px;
+	height: 27px;
+	margin: 0 0 0 -2px;
+}
+#image-uploader form button {
+	padding: 5px;
+	margin: 5px 0;
+	float: left;
+}
+#image-uploader form ul {
+	margin: 0;
+	padding: 0;
+	width: 100px;
+	float: left;
+	text-align: left;
+}
+#image-uploader form ul li {
+	list-style: none;
+	width: 100px;
+	line-height: 14px;
+	margin: 5px 0;
+}
+#image-uploader form ul li input {
+	float: none;
+	display: inline-block;
+}
+#image-uploader form ul li input[type="checkbox"] {
+	height: 12px;
+	width: 12px;
+	margin: 0 10px 0 0;
+}
+#image-uploader .tag-list {
+	display: none;
+}

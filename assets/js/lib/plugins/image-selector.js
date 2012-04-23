@@ -1,5 +1,6 @@
+//dependancy jquery, jquery.form
 (function($,BI,undefined){
-	var $browser;
+	var $browser,$uploader;
 	//internal state, defaults
 	var state = {
 		start : 0,
@@ -7,7 +8,7 @@
 		count: 0
 	}
 	//used to keep track of which input the editor is currently effecting
-	var updateEl;
+	var updateEl,activeButtons,updateCB;
 
 	/*TEMPLATES*/
 	var buttonTemplate = '\
@@ -21,7 +22,7 @@
 
   	var browserTemplate = '\
   	<div id="image-browser">\
-  		<p>Search: <input type="text" /><span class="pagination"></span><a class="close">X</a></p>\
+  		<p class="hdr">Search: <input type="text" /><span class="pagination"></span><a class="close">X</a></p>\
   		<div class="results"></div>\
   	</div>';
 
@@ -71,7 +72,28 @@
 			'Startups',
 			'Retail',
 			'Sports'
-		]
+		];
+
+		var html = '\
+			<div id="image-uploader">\
+				<p class="hdr">Image Uploader<a class="close">X</a></p>\
+				<form action="/cms/ajax/upload" method="post" enctype="multipart/form-data">\
+					<p><label>File</label><input type="file" name="file" /></p>\
+					<p><label>Description</label><input type="text" name="description"/></p>\
+					<p><label>Caption</label><input type="text" name="caption"/></p>\
+					<p><label>Source</label><input type="text" name="source"/></p>\
+					<p><label>Link</label><input type="text" name="link"/></p>\
+					<p><label>Is Chart?</label><input type="checkbox" name="tags[]" class="tag-toggle" /></p>\
+					<div class="tag-list"><label>Tags</label><ul>';
+						$(chartCatagories).each(function() {
+							html += '<li><input type="checkbox" name="tags[]" value="'+this+'"/>'+this+'</li>';
+						})
+			html += 	'</ul></div>\
+					<input type="hidden" value="json" name="format" />\
+					<p><button>Upload</button></p>\
+				</form>\
+			</div>';
+		return html;
 	}
 
 	//shows the image browser and adjusts its offset from the top of the screen
@@ -80,6 +102,15 @@
   		$('#image-browser').show();
   		$('#image-browser').css('top',opt.top);
   		getImageList();
+  	};
+
+  	//shows the image uploader and adjusts its offset from the top of the screen
+	//relative to the element that called it
+  	var launchImageUploader = function(opt) {
+  		$uploader.show();
+  		$uploader.find('input[type="text"]').val('');
+  		$uploader.find('input[type="file"]').val('');
+  		$uploader.css('top',opt.top);
   	};
 
   	//makes an ajax request to get a list of images
@@ -123,14 +154,21 @@
 	//called on page load, sets up the single instance of the image browser
 	var init = function() {
 		//adds the template to the page
-		$('body').append(browserTemplate);
+		$('body').append(browserTemplate).append(uploadTemplate);
 		//set the global refrence
 		$browser = $('#image-browser');
-		//bind the close event
+		$uploader = $('#image-uploader');
+		
+		//bind the close events
 		$browser.on('click','.close',function() {
 			$browser.hide();
 			return false; //stopProp and preventDefault
 		})
+		$uploader.on('click','.close',function() {
+			$uploader.hide();
+			return false; //stopProp and preventDefault
+		})
+
 		//bind pagination
 		$browser.on('click','.pagination a',function() {
 			var newStart;
@@ -142,15 +180,66 @@
 			getImageList(newStart);
 			return false; //stopProp and preventDefault
 		})
+
+		//bind delete-image button
 		$browser.on('click','.delete-image',function() {
 			deleteImage($(this).parent().attr('rel'));
 		})
+
+		//bind image-select click event
+		$browser.on('click','.result img',function() {
+			//grab the value from the element
+			var val = $(this).parent().parent().attr('rel');
+			$browser.hide();
+			updateEl.val(val);
+			//set the image preview
+			activeButtons.find('img').attr('src',$(this).attr('src'))
+			//set the title
+			activeButtons.find('span').html($(this).parent().attr('title'))
+			//call the users onUpdate method
+			updateCB(val)
+		});	
+
+		//bind auto search
 		$('#image-browser input').keypress(function(e) {
 			if (e.which == 13) {
 				return false;
 			}
 			getImageList(0,$('#image-browser input').val());
 		});
+
+		//bind uploader form
+		$uploader.find('form').ajaxForm(function(result) { 
+            if (result.error) {
+            	alert(result.error);
+            	return;
+            }
+            else if (result.id) {
+				//set the image preview
+				activeButtons.find('img').attr('src',result.src)
+				//set the title
+				activeButtons.find('span').html(result.filename)
+				updateCB(result.id);
+            	$uploader.hide();
+            }
+        });
+        
+        //setup form checking (prevent submit if no val)
+        $uploader.find('button').attr('disabled','disabled');
+        $uploader.find('input[type="file"]').change(validateFile)
+
+        //setup the tag toggler
+        $uploader.on('click','.tag-toggle',function() {
+        	$uploader.find('div').toggle();
+        })
+
+
+	}
+
+	var validateFile = function() {
+		if ($(this).val()) {
+			$uploader.find('button').removeAttr('disabled');
+		}
 	}
 
 	//plugin "constructor"
@@ -163,11 +252,26 @@
 	  $el.hide();
 	  //replace with the selector widget
 	  var newButtons = $(buttonTemplate).insertAfter($el)
-	  
+
+	  //bind upload click event
+	  newButtons.on('click','button[rel="upload"]',function() {
+	  	$('#image-browser').hide();
+	  	updateEl = $(this).parent().prev();
+	  	activeButtons = newButtons;
+	  	updateCB = options.onUpdate;
+	  	launchImageUploader({
+			//pass in the offset of the element so we can reposition the imagebrowser
+			top: $(this).offset().top+$(this).height()+9
+		});
+		return false; //preventDefault and stopProp
+	  });
 
 	  //bind select click event
 	  newButtons.on('click','button[rel="select"]',function() {
+	  	$('#image-uploader').hide();
 	  	updateEl = $(this).parent().prev();
+	  	activeButtons = newButtons;
+	  	updateCB = options.onUpdate;
 	  	launchImageBrowser({
 			//pass in the offset of the element so we can reposition the imagebrowser
 			top: $(this).offset().top+$(this).height()+9
@@ -187,23 +291,7 @@
 		return false; //preventDefault and stopProp
 	  });	  
 
-	  //bind image-select click event (todo abstract so we aren't binding multiple times)
-	  $browser.on('click','.result img',function() {
-	  	//make sure we are capturing an update for this selector and not another on the page
-		if (updateEl.data('imageselector') == $el.data('imageselector')) {
-			//grab the value from the element
-			var val = $(this).parent().parent().attr('rel');
-			$browser.hide();
-			updateEl.val(val);
-			//set the image preview
-			newButtons.find('img').attr('src',$(this).attr('src'))
-			//set the title
-			newButtons.find('span').html($(this).parent().attr('title'))
-			//call the users onUpdate method
-			options.onUpdate(val)
-		}	
-		return false; //stopProp and preventDefault
-	  })
+	  //auto populate
 	  newButtons.find('span').html($el.val())
 	};
 

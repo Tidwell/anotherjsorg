@@ -7,6 +7,10 @@
 <div id="container" class="edit-event">
   <form>
   <h1 class="title">Edit Event</h1>
+<script type="text/html" id="person-template">
+    <h3 data-bind="text: name"></h3>
+    <p>Credits: <span data-bind="text: credits"></span></p>
+</script>
 
   <h2>Setup and Landing Page</h2>
     <p><label>Event Name</label><input type="text"  data-bind="value: name" /></p>

@@ -9,6 +9,7 @@
 <script type='text/javascript' src='/assets/CMS/assets/js/vendor/jquery.validate.js'></script>
 <script type='text/javascript' src='/assets/CMS/assets/js/vendor/jquery.colorpicker.js'></script>
 <script type='text/javascript' src='/assets/CMS/assets/js/vendor/jquery.tinymce.js'></script>
+<script type='text/javascript' src='/assets/CMS/assets/js/vendor/jquery.form.js'></script>
 
 <!-- Knockout & vendor plugins -->
 <script type='text/javascript' src='/assets/CMS/assets/js/vendor/knockout.js'></script>
