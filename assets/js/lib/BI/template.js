@@ -1,11 +1,11 @@
 /**
-    Provides lazy-loaded templating
+    Provides lazy-loaded templating and abstraction on top of jQuery.tmpl
 
     @module template
 **/
 
 /**
-    Provides lazy-loaded templating
+    Provides lazy-loaded templating and abstraction on top of jQuery.tmpl
     
     @class template
     @namespace BI 
@@ -35,7 +35,7 @@
             var cbs = tpls[url];
             //call each callback
             for (var i=0; i<cbs.length; i++) {
-                cbs[i](data);
+                cbs[i].callback(data);
             }
             //set the template to the data
             tpls[url] = data;
@@ -45,16 +45,18 @@
     
     /**
         A function that takes a relative path to a template from the BI root and
-        loads it over ajax (if necessary) then calls the callback passing it the
-        rendered template
+        loads it over ajax (if necessary) then renders using jquery tmpl and
+        finally calls the callback passing it the rendered template
 
         @method template
         @param {Object} options
             @param {String} options.tpl The template file relative to ./assets/js/lib/BI/ (no .tpl)
             @param {Function} options.callback Callback function passed the processed template
+            @param {Object} [options.data] Data to be passed through the templating engine
         @return void
     **/
     BI.template = function(obj) {
+        obj.data = obj.data || {};
         //if we've got it, simply call their callback and we're done
         if (typeof tpls[obj.tpl] === 'String') {
             obj.callback(tpls[obj.tpl]);
@@ -69,6 +71,6 @@
         }
 
         //push the callback onto the array
-        tpls[obj.tpl].push(obj.callback);
+        tpls[obj.tpl].push(obj);
     };
 }(jQuery, ko, BI))

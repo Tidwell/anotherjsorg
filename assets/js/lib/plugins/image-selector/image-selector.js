@@ -39,9 +39,6 @@
 
     var paginationTemplate = function (obj) {
         var html = '';
-        obj.start
-        obj.count
-        obj.results.length
         //prev link
         if (obj.start > 0) {
             html += '<a class="back">< Prev</a> '
@@ -84,7 +81,7 @@
             url: '/cms/ajax/imagesearch',
             data: {
                 q: query || '',
-                start: start || state.start || 0
+                start: start || 0
             },
             dataType: 'json',
             success: function (json) {
@@ -98,6 +95,15 @@
                 var resultEl = $browser.find('.results');
                 resultEl.html('');
                 $(json.results).each(function (i, data) {
+                    //generate short descriptions
+                    if (data.description > 18) {
+                        data.shortDesc = data.description.slice(0, 18) + '...'
+                    }
+                    else {
+                        data.shortDesc = data.description;
+                    }
+                    //append the templated data
+
                     resultEl.append(resultTemplate(data));
                 })
             }
