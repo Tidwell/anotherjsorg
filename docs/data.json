@@ -69,6 +69,19 @@
             "namespaces": {
                 "BI": 1
             }
+        },
+        "assets/js/lib/BI/template.js": {
+            "name": "assets/js/lib/BI/template.js",
+            "modules": {
+                "template": 1
+            },
+            "classes": {
+                "BI.template": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "BI": 1
+            }
         }
     },
     "modules": {
@@ -152,6 +165,21 @@
             "file": "assets/js/lib/BI/page-data.js",
             "line": 8,
             "description": "Used to store and retrieve data\nabout the current page (called often via php)"
+        },
+        "template": {
+            "name": "template",
+            "submodules": {},
+            "classes": {
+                "BI.template": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "BI": 1
+            },
+            "tag": "module",
+            "file": "assets/js/lib/BI/template.js",
+            "line": 7,
+            "description": "Provides lazy-loaded templating"
         }
     },
     "classes": {
@@ -222,6 +250,21 @@
             "namespace": "BI",
             "file": "assets/js/lib/BI/page-data.js",
             "line": 8,
+            "static": 1
+        },
+        "BI.template": {
+            "name": "BI.template",
+            "shortname": "BI.template",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "template",
+            "namespace": "BI",
+            "file": "assets/js/lib/BI/template.js",
+            "line": 7,
+            "description": "Provides lazy-loaded templating",
             "static": 1
         }
     },
@@ -556,6 +599,60 @@
             },
             "class": "BI.pageData",
             "module": "pageData",
+            "namespace": "BI"
+        },
+        {
+            "file": "assets/js/lib/BI/template.js",
+            "line": 20,
+            "description": "Takes a url and makes an ajax request for that URL (relative to the BI docroot)\nWhen loaded, will call all callbacks stacked up for\nthat template then store the template for future reference",
+            "itemtype": "method",
+            "name": "load",
+            "params": [
+                {
+                    "name": "url",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "void"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "BI.template",
+            "module": "template",
+            "namespace": "BI"
+        },
+        {
+            "file": "assets/js/lib/BI/template.js",
+            "line": 46,
+            "description": "A function that takes a relative path to a template from the BI root and\nloads it over ajax (if necessary) then calls the callback passing it the\nrendered template",
+            "itemtype": "method",
+            "name": "template",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object",
+                    "props": [
+                        {
+                            "name": "tpl",
+                            "description": "The template file relative to ./assets/js/lib/BI/ (no .tpl)",
+                            "type": "String"
+                        },
+                        {
+                            "name": "callback",
+                            "description": "Callback function passed the processed template",
+                            "type": "Function"
+                        }
+                    ]
+                }
+            ],
+            "return": {
+                "description": "void"
+            },
+            "class": "BI.template",
+            "module": "template",
             "namespace": "BI"
         }
     ]

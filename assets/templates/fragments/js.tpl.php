@@ -21,18 +21,18 @@
 <script type='text/javascript' src='/assets/CMS/assets/js/lib/BI/mvvm.js'></script>
 <script type='text/javascript' src='/assets/CMS/assets/js/lib/BI/location/querystring.js'></script>
 <script type='text/javascript' src='/assets/CMS/assets/js/lib/BI/location/cms-path.js'></script>
+<script>
+    //set the cms path so we can use it internally for assets included though js
+    BI.location.cmsPath.set('rootAssets', '/assets/CMS/assets/');
+</script>
 <script type='text/javascript' src='/assets/CMS/assets/js/lib/BI/page-data.js'></script>
+<script type='text/javascript' src='/assets/CMS/assets/js/lib/BI/template.js'></script>
 
 <!--Custom jQuery plugins-->
-<script type='text/javascript' src='/assets/CMS/assets/js/lib/plugins/image-selector.js'></script>
+<script type='text/javascript' src='/assets/CMS/assets/js/lib/plugins/image-selector/image-selector.js'></script>
 
 <!-- Custom Knockout plugins -->
 <script type='text/javascript' src='/assets/CMS/assets/js/lib/plugin-adaptors/colorpicker.js'></script>
 <script type='text/javascript' src='/assets/CMS/assets/js/lib/plugin-adaptors/source.js'></script>
 <script type='text/javascript' src='/assets/CMS/assets/js/lib/plugin-adaptors/tinymce.js'></script>
 <script type='text/javascript' src='/assets/CMS/assets/js/lib/plugin-adaptors/image-selector.js'></script>
-
-<script>
-	//set the cms path so we can use it internally for assets included though js
-	BI.location.cmsPath.set('rootAssets', '/assets/CMS/assets/');
-</script>

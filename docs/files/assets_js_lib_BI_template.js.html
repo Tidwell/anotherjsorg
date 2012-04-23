@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>cmsPath - YUIDoc</title>
+    <title>assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;template.js - YUIDoc</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -94,46 +94,85 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>cmsPath Module</h1>
-<div class="box clearfix meta">
+                        <h1 class="file-heading">File: assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;template.js</h1>
+
+<div class="file">
+    <pre class="code prettyprint linenums">
+&#x2F;**
+    Provides lazy-loaded templating
+
+    @module template
+**&#x2F;
+
+&#x2F;**
+    Provides lazy-loaded templating
     
-
+    @class template
+    @namespace BI 
+    @static
+**&#x2F;
+(function($,ko,BI,undefined) {
+    BI.namespace(&#x27;template&#x27;);
+    var exposed,
+        tplContainer,
+        tpls = {};
     
-        <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;assets_js_lib_BI_location_cms-path.js.html#l8"><code>assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;location&#x2F;cms-path.js:8</code></a>
-        </div>
-    
+    &#x2F;** 
+        Takes a url and makes an ajax request for that URL (relative to the BI docroot)
+        When loaded, will call all callbacks stacked up for
+        that template then store the template for future reference
 
-    
-</div>
-
-
-
-<div class="box intro">
-    <p>Used to store and retrieve data about the server path to the library
-(for including scripts, css, relative links, etc)</p>
-</div>
-
-<div class="yui3-g">
-    <div class="yui3-u-1-2">
+        @method load
         
-            <p>This module provides the following classes:</p>
+        @param {String} url
+        @return void
+        @private
+    **&#x2F;
+    function load(url) {
+        $.ajax({
+          url: BI.location.cmsPath.get(&#x27;rootAssets&#x27;)+&#x27;js&#x2F;lib&#x2F;&#x27;+url+&#x27;.tpl&#x27;,
+          success: function(data) {
+            var cbs = tpls[url];
+            &#x2F;&#x2F;call each callback
+            for (var i=0; i&lt;cbs.length; i++) {
+                cbs[i](data);
+            }
+            &#x2F;&#x2F;set the template to the data
+            tpls[url] = data;
+          }
+        });
+    }
+    
+    &#x2F;**
+        A function that takes a relative path to a template from the BI root and
+        loads it over ajax (if necessary) then calls the callback passing it the
+        rendered template
 
-            <ul class="module-classes">
-            
-                <li class="module-class">
-                    <a href="..&#x2F;classes/BI.location.cmsPath.html">
-                        BI.location.cmsPath
-                    </a>
-                </li>
-            
-            </ul>
-        
-    </div>
+        @method template
+        @param {Object} options
+            @param {String} options.tpl The template file relative to .&#x2F;assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F; (no .tpl)
+            @param {Function} options.callback Callback function passed the processed template
+        @return void
+    **&#x2F;
+    BI.template = function(obj) {
+        &#x2F;&#x2F;if we&#x27;ve got it, simply call their callback and we&#x27;re done
+        if (typeof tpls[obj.tpl] === &#x27;String&#x27;) {
+            obj.callback(tpls[obj.tpl]);
+            return;
+        } 
 
-    <div class="yui3-u-1-2">
-        
-    </div>
+        &#x2F;&#x2F;otherwise, if we aren&#x27;t already loading it, we turn the tpl
+        &#x2F;&#x2F;into an array to hold callbacks and call the load
+        if (!tpls[obj.tpl]){
+            tpls[obj.tpl] = [];
+            load(obj.tpl);
+        }
+
+        &#x2F;&#x2F;push the callback onto the array
+        tpls[obj.tpl].push(obj.callback);
+    };
+}(jQuery, ko, BI))
+    </pre>
 </div>
 
                     </div>

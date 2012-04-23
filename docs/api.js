@@ -5,12 +5,14 @@ YUI.add("yuidoc-meta", function(Y) {
         "BI.location.cmsPath",
         "BI.location.querystring",
         "BI.mvvm",
-        "BI.pageData"
+        "BI.pageData",
+        "BI.template"
     ],
     "modules": [
         "cmsPath",
         "mvvm",
-        "pageData"
+        "pageData",
+        "template"
     ],
     "allModules": [
         {
@@ -27,6 +29,11 @@ YUI.add("yuidoc-meta", function(Y) {
             "displayName": "pageData",
             "name": "pageData",
             "description": "Used to store and retrieve data\nabout the current page (called often via php)"
+        },
+        {
+            "displayName": "template",
+            "name": "template",
+            "description": "Provides lazy-loaded templating"
         }
     ]
 } };

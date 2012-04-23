@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>BI.location.cmsPath - YUIDoc</title>
+    <title>BI.template - YUIDoc</title>
     <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.5.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
@@ -94,7 +94,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>BI.location.cmsPath Class</h1>
+                        <h1>BI.template Class</h1>
 <div class="box meta">
     
 
@@ -102,13 +102,13 @@
 
     
         <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;assets_js_lib_BI_location_cms-path.js.html#l8"><code>assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;location&#x2F;cms-path.js:8</code></a>
+            Defined in: <a href="..&#x2F;files&#x2F;assets_js_lib_BI_template.js.html#l7"><code>assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;template.js:7</code></a>
         </div>
     
 
     
         
-            Module: <a href="../modules/cmsPath.html">cmsPath</a>
+            Module: <a href="../modules/template.html">template</a>
         
     
 
@@ -118,7 +118,7 @@
 
 
 <div class="box intro">
-    
+    <p>Provides lazy-loaded templating</p>
 </div>
 
 
@@ -145,14 +145,14 @@
 
                     <ul class="index-list methods">
                         
-                            <li class="index-item method">
-                                <a href="#method_get">get</a>
+                            <li class="index-item method private">
+                                <a href="#method_load">load</a>
 
                                 
                             </li>
                         
                             <li class="index-item method">
-                                <a href="#method_set">set</a>
+                                <a href="#method_template">template</a>
 
                                 
                             </li>
@@ -173,8 +173,8 @@
                 <h2 class="off-left">Methods</h2>
 
                 
-                    <div id="method_get" class="method item">
-    <h3 class="name"><code>get</code></h3>
+                    <div id="method_load" class="method item private">
+    <h3 class="name"><code>load</code></h3>
 
     
         <div class="args">
@@ -182,13 +182,7 @@
             
                 <li class="arg">
                     
-                        <code>key</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>value</code>
+                        <code>url</code>
                     
                 </li>
             
@@ -198,12 +192,14 @@
 
     
         <span class="returns-inline">
-            <span class="type">Void</span>
+            <span class="type"></span>
         </span>
     
 
     
 
+    
+        <span class="flag private">private</span>
     
 
     
@@ -223,7 +219,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;assets_js_lib_BI_location_cms-path.js.html#l35"><code>assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;location&#x2F;cms-path.js:35</code></a>
+        <a href="..&#x2F;files&#x2F;assets_js_lib_BI_template.js.html#l20"><code>assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;template.js:20</code></a>
         
         </p>
 
@@ -234,7 +230,9 @@
     </div>
 
     <div class="description">
-        <p>Gets a path</p>
+        <p>Takes a url and makes an ajax request for that URL (relative to the BI docroot)
+When loaded, will call all callbacks stacked up for
+that template then store the template for future reference</p>
     </div>
 
     
@@ -245,22 +243,7 @@
             
                 <li class="param">
                     
-                        <code class="param-name">key</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
-
-                    
-
-                    <div class="param-description">
-                         
-                    </div>
-
-                    
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">value</code>
+                        <code class="param-name">url</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
@@ -284,8 +267,7 @@
             <div class="returns-description">
                 
                     
-                        <span class="type">Void</span>:
-                    
+                    void
                 
             </div>
         </div>
@@ -295,8 +277,8 @@
 </div>
 
                 
-                    <div id="method_set" class="method item">
-    <h3 class="name"><code>set</code></h3>
+                    <div id="method_template" class="method item">
+    <h3 class="name"><code>template</code></h3>
 
     
         <div class="args">
@@ -304,13 +286,7 @@
             
                 <li class="arg">
                     
-                        <code>key</code>
-                    
-                </li>
-            
-                <li class="arg">
-                    
-                        <code>value</code>
+                        <code>options</code>
                     
                 </li>
             
@@ -320,7 +296,7 @@
 
     
         <span class="returns-inline">
-            <span class="type">Void</span>
+            <span class="type"></span>
         </span>
     
 
@@ -345,7 +321,7 @@
             
         
         
-        <a href="..&#x2F;files&#x2F;assets_js_lib_BI_location_cms-path.js.html#l21"><code>assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;location&#x2F;cms-path.js:21</code></a>
+        <a href="..&#x2F;files&#x2F;assets_js_lib_BI_template.js.html#l46"><code>assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F;template.js:46</code></a>
         
         </p>
 
@@ -356,7 +332,9 @@
     </div>
 
     <div class="description">
-        <p>Sets a path</p>
+        <p>A function that takes a relative path to a template from the BI root and
+loads it over ajax (if necessary) then calls the callback passing it the
+rendered template</p>
     </div>
 
     
@@ -367,8 +345,8 @@
             
                 <li class="param">
                     
-                        <code class="param-name">key</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <code class="param-name">options</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external external" target="_blank">Object</a></span>
                     
 
                     
@@ -378,20 +356,35 @@
                     </div>
 
                     
-                </li>
-            
-                <li class="param">
-                    
-                        <code class="param-name">value</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    
+                        <ul class="params-list">
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">tpl</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                                
 
-                    
+                                <div class="param-description">
+                                    <p>The template file relative to ./assets/js/lib/BI/ (no .tpl)</p>
+                                </div>
 
-                    <div class="param-description">
-                         
-                    </div>
+                                
+                            </li>
+                            
+                            <li class="param">
+                                
+                                    <code class="param-name">callback</code>
+                                    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                                
 
+                                <div class="param-description">
+                                    <p>Callback function passed the processed template</p>
+                                </div>
+
+                                
+                            </li>
+                            
+                        </ul>
                     
                 </li>
             
@@ -406,8 +399,7 @@
             <div class="returns-description">
                 
                     
-                        <span class="type">Void</span>:
-                    
+                    void
                 
             </div>
         </div>
