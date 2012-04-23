@@ -6,6 +6,12 @@
 **/
 
 /**
+	Used to store and retrieve data about the server path to the library
+	(for including scripts, css, relative links, etc).
+
+	Common paths set:
+		'rootAssets'
+
 	@class cmsPath
 	@namespace BI.location
 **/
