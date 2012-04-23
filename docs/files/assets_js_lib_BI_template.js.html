@@ -135,7 +135,7 @@
             var cbs = tpls[url];
             &#x2F;&#x2F;call each callback
             for (var i=0; i&lt;cbs.length; i++) {
-                cbs[i](data);
+                cbs[i].callback(data);
             }
             &#x2F;&#x2F;set the template to the data
             tpls[url] = data;
@@ -145,16 +145,17 @@
     
     &#x2F;**
         A function that takes a relative path to a template from the BI root and
-        loads it over ajax (if necessary) then calls the callback passing it the
-        rendered template
+        loads it over ajax (if necessary) then calls the callback passing it the rendered template
 
         @method template
         @param {Object} options
             @param {String} options.tpl The template file relative to .&#x2F;assets&#x2F;js&#x2F;lib&#x2F;BI&#x2F; (no .tpl)
             @param {Function} options.callback Callback function passed the processed template
+            @param {Object} [options.data] Data to be passed through the templating engine
         @return void
     **&#x2F;
     BI.template = function(obj) {
+        obj.data = obj.data || {};
         &#x2F;&#x2F;if we&#x27;ve got it, simply call their callback and we&#x27;re done
         if (typeof tpls[obj.tpl] === &#x27;String&#x27;) {
             obj.callback(tpls[obj.tpl]);
@@ -169,7 +170,7 @@
         }
 
         &#x2F;&#x2F;push the callback onto the array
-        tpls[obj.tpl].push(obj.callback);
+        tpls[obj.tpl].push(obj);
     };
 }(jQuery, ko, BI))
     </pre>

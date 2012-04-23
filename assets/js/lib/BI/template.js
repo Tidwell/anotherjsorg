@@ -1,11 +1,11 @@
 /**
-    Provides lazy-loaded templating and abstraction on top of jQuery.tmpl
+    Provides lazy-loaded templating
 
     @module template
 **/
 
 /**
-    Provides lazy-loaded templating and abstraction on top of jQuery.tmpl
+    Provides lazy-loaded templating
     
     @class template
     @namespace BI 
@@ -45,8 +45,7 @@
     
     /**
         A function that takes a relative path to a template from the BI root and
-        loads it over ajax (if necessary) then renders using jquery tmpl and
-        finally calls the callback passing it the rendered template
+        loads it over ajax (if necessary) then calls the callback passing it the rendered template
 
         @method template
         @param {Object} options

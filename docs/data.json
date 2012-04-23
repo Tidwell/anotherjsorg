@@ -627,7 +627,7 @@
         {
             "file": "assets/js/lib/BI/template.js",
             "line": 46,
-            "description": "A function that takes a relative path to a template from the BI root and\nloads it over ajax (if necessary) then calls the callback passing it the\nrendered template",
+            "description": "A function that takes a relative path to a template from the BI root and\nloads it over ajax (if necessary) then calls the callback passing it the rendered template",
             "itemtype": "method",
             "name": "template",
             "params": [
@@ -645,6 +645,12 @@
                             "name": "callback",
                             "description": "Callback function passed the processed template",
                             "type": "Function"
+                        },
+                        {
+                            "name": "data",
+                            "description": "Data to be passed through the templating engine",
+                            "type": "Object",
+                            "optional": true
                         }
                     ]
                 }
