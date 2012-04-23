@@ -56,8 +56,9 @@
     **/
     BI.template = function(obj) {
         obj.data = obj.data || {};
+        console.log(typeof tpls[obj.tpl])
         //if we've got it, simply call their callback and we're done
-        if (typeof tpls[obj.tpl] === 'String') {
+        if (typeof tpls[obj.tpl] === 'string') {
             obj.callback(tpls[obj.tpl]);
             return;
         } 
