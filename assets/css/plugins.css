@@ -4,15 +4,20 @@
 	margin: 0 5px 0 0;
 	display: inline-block;
 }
-#container .image-selector img {
+#container .image-selector img.thumb-preview {
 	max-height: 26px;
 	vertical-align: bottom;
+}
+img.image-selector-fullsize-preview {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 #container .image-selector span {
 	display: inline;
 	float: none;
+    line-height: 20px;
 }
-
 #image-browser, #image-uploader {
 	display: none;
 	width: 800px;

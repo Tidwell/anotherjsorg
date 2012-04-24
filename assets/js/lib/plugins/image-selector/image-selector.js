@@ -102,6 +102,7 @@
 
         var render = function(obj) {
             buttons.find('img').attr('src', obj.uri)
+            buttons.find('img').attr('fullsize_uri', obj.fullsize_uri)
             buttons.find('span').html(obj.filename)
         }
 
@@ -157,6 +158,7 @@
             renderSelected({
                 uri: $(this).attr('src'), 
                 filename: $(this).parent().attr('title'), 
+                fullsize_uri: $(this).attr('fullsize_uri'),
                 id: val}, activeButtons);
             //call the users onUpdate method
             updateCB(val)
@@ -185,10 +187,7 @@
                 alert(result.error);
                 return;
             } else if (result.id) {
-                renderSelected({
-                    uri: result.src, 
-                    filename: result.filename, 
-                    id: result.id},activeButtons);
+                renderSelected({id: result.id},activeButtons);
                 updateCB(result.id);
                 $uploader.hide();
             }
@@ -291,6 +290,19 @@
                 newButtons.find('span').html('')
                 options.onUpdate('');
                 return false; //preventDefault and stopProp
+            });
+
+            newButtons.on('mouseenter', 'span', function(){
+                $this = $(this);
+                $img = $('<img class="image-selector-fullsize-preview" />');
+                $img.attr('src', $this.parent().find('img.thumb-preview').attr('fullsize_uri'));
+                $img.css('top', $this.parent().offset().top + 20);
+                $img.css('left', $this.offset().left);
+                $('body').append($img);
+            });
+
+            newButtons.on('mouseleave', 'span', function(){
+                $('.image-selector-fullsize-preview').remove();
             });
         }
 
