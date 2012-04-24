@@ -67,7 +67,7 @@
                 resultEl.html('');
                 $(json.results).each(function (i, data) {
                     //generate short descriptions
-                    if (data.description > 18) {
+                    if (data.description.length > 18) {
                         data.shortDesc = data.description.slice(0, 18) + '...'
                     }
                     else {
