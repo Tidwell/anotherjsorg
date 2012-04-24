@@ -48,7 +48,6 @@
             },
             dataType: 'json',
             success: function (json) {
-                console.log('result',json)
                 //store internal state
                 state.start = json.start;
                 state.setLength = json.results.length;
@@ -98,6 +97,33 @@
         return false; //preventDefault and stopPropagation
     }
 
+    var renderSelected = function(obj,buttons) {
+        if (!obj.id) { return; }
+
+        var render = function(obj) {
+            buttons.find('img').attr('src', obj.uri)
+            buttons.find('span').html(obj.filename)
+        }
+
+        if (!obj.filename || !obj.uri) {
+            $.ajax({
+                url: '/cms/ajax/image_info',
+                data: {id: obj.id},
+                success: function(data){
+                    if (data.error) {
+                        render({uri: '', filename: 'Not found: '+obj.id});
+                        return;
+                    }
+                    else {
+                        render(data.result);
+                    }
+                }
+            })
+        } else {
+            render(obj);
+        }
+    }
+
     var bindBrowser = function() {
         //bind the close events
         $browser.on('click', '.close', function () {
@@ -128,9 +154,10 @@
             $browser.hide();
             updateEl.val(val);
             //set the image preview
-            activeButtons.find('img').attr('src', $(this).attr('src'))
-            //set the title
-            activeButtons.find('span').html($(this).parent().attr('title'))
+            renderSelected({
+                uri: $(this).attr('src'), 
+                filename: $(this).parent().attr('title'), 
+                id: val}, activeButtons);
             //call the users onUpdate method
             updateCB(val)
         });
@@ -158,10 +185,10 @@
                 alert(result.error);
                 return;
             } else if (result.id) {
-                //set the image preview
-                activeButtons.find('img').attr('src', result.src)
-                //set the title
-                activeButtons.find('span').html(result.filename)
+                renderSelected({
+                    uri: result.src, 
+                    filename: result.filename, 
+                    id: result.id},activeButtons);
                 updateCB(result.id);
                 $uploader.hide();
             }
@@ -272,7 +299,7 @@
             callback: function(tpl) {
                 $el.hide();
                 newButtons = $el.parent().append(tpl);
-                newButtons.find('span').html($el.val());
+                renderSelected({id: $el.val()},newButtons);
                 bindButtons();
             }
         })            
