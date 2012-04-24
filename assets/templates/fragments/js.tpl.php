@@ -16,6 +16,9 @@
 <script type='text/javascript' src='/assets/CMS/assets/js/vendor/knockout.mapper.js'></script>
 <script type='text/javascript' src='/assets/CMS/assets/js/vendor/knockout.sortable.js'></script>
 
+<!-- Load the templating engine after Knockout so it doesn't conflict-->
+<script type='text/javascript' src='/assets/CMS/assets/js/vendor/jquery.tmpl.js'></script>
+
 <!-- Custom BI lib -->
 <script type='text/javascript' src='/assets/CMS/assets/js/lib/BI/base.js'></script>
 <script type='text/javascript' src='/assets/CMS/assets/js/lib/BI/mvvm.js'></script>

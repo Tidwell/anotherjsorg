@@ -1,8 +1,6 @@
 /*
     jQuery plugin to add 3 buttons in replace of an input used to launch a single
     shared instance of an image browser and image upload form.
-
-    
 */
 //dependancy jquery, jquery.form, BI.template
 (function ($, BI, undefined) {
@@ -18,41 +16,6 @@
 
     //"globals" used to keep track of which set of elements the editor is currently effecting
     var updateEl, activeButtons, updateCB;
-
-    
-
-    var resultTemplate = function (data) {
-        var desc = data.description;
-        if (desc.length > 18) {
-            desc = desc.slice(0, 18) + '...'
-        }
-        return '\
-        <div class="result" rel="' + data._id.$id + '">\
-            <div class="delete-image">X</div>\
-            <div class="result-insert" title="' + data.description + '">\
-                <img src="' + data.uri + '" />\
-            </div>\
-            <div class="description">' + desc + '</div>\
-            <div class="size">' + data.size + '</div>\
-        </div>';
-    };
-
-    var paginationTemplate = function (obj) {
-        var html = '';
-        //prev link
-        if (obj.start > 0) {
-            html += '<a class="back">< Prev</a> '
-        }
-        //result set range
-        html += obj.start + '-' + (obj.start + obj.results.length) + ' of ' + obj.count;
-        //next link
-        if (obj.count > obj.start + obj.results.length) {
-            html += ' <a class="next">Next ></a>'
-        }
-        return html;
-    }
-
-   
 
     //shows the image browser and adjusts its offset from the top of the screen
     //relative to the element that called it
@@ -85,12 +48,20 @@
             },
             dataType: 'json',
             success: function (json) {
+                console.log('result',json)
                 //store internal state
                 state.start = json.start;
                 state.setLength = json.results.length;
                 state.count = json.count;
                 //generate the pagination
-                $('#image-browser p .pagination').html(paginationTemplate(json));
+                BI.template({
+                    tpl: 'plugins/image-selector/pagination',
+                    data: json,
+                    callback: function(tpl) {
+                        $('#image-browser p .pagination').html(tpl);
+                    }
+                })
+                
                 //append the results
                 var resultEl = $browser.find('.results');
                 resultEl.html('');
@@ -103,8 +74,13 @@
                         data.shortDesc = data.description;
                     }
                     //append the templated data
-
-                    resultEl.append(resultTemplate(data));
+                    BI.template({
+                        tpl: 'plugins/image-selector/result',
+                        data: data,
+                        callback: function(tmpl) {
+                            resultEl.append(tmpl);
+                        }
+                    })
                 })
             }
         });

@@ -1,5 +1,5 @@
 /**
-    Provides lazy-loaded templating
+    Provides lazy-loaded templating and wrapper for jQuery tmpl
 
     @module template
 **/
@@ -33,9 +33,10 @@
           url: BI.location.cmsPath.get('rootAssets')+'js/lib/'+url+'.tpl',
           success: function(data) {
             var cbs = tpls[url];
+            var template = data;
             //call each callback
             for (var i=0; i<cbs.length; i++) {
-                cbs[i].callback(data);
+                cbs[i].callback($.tmpl(template,cbs[i].data));
             }
             //set the template to the data
             tpls[url] = data;
@@ -45,7 +46,8 @@
     
     /**
         A function that takes a relative path to a template from the BI root and
-        loads it over ajax (if necessary) then calls the callback passing it the rendered template
+        loads it over ajax (if necessary) then runs through jquery tmpl,
+        finally calls the callback passing it the rendered template
 
         @method template
         @param {Object} options
@@ -56,10 +58,10 @@
     **/
     BI.template = function(obj) {
         obj.data = obj.data || {};
-        console.log(typeof tpls[obj.tpl])
+        //console.log(typeof tpls[obj.tpl])
         //if we've got it, simply call their callback and we're done
         if (typeof tpls[obj.tpl] === 'string') {
-            obj.callback(tpls[obj.tpl]);
+            obj.callback($.tmpl(tpls[obj.tpl],obj.data));
             return;
         } 
 
